@@ -130,11 +130,9 @@ export const products = [
     id: 11,
     name: 'Liquide Socks',
     priceRetail: 4.99,
-    priceWholesale: 2.50,
-    wholesaleTiers: [
-      { minQty: 12, price: 2.25 },
-      { minQty: 25, price: 2.15 }
-    ],
+    priceWholesale: 4.99,
+    priceOriginal: 8.99,
+    wholesaleTiers: [],
     category: 'Ropa',
     image: '/images/Liquide Socks.jpg',
     description: 'Calcetines técnicos de alto rendimiento. Compresión precisa, máxima transpirabilidad y el estilo audaz de Liquide para dejar huella en cada pedalada.'

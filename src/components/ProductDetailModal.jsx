@@ -110,14 +110,40 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                     </span>
                     <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: '1.5rem', lineHeight: 1.1 }}>{product.name}</h2>
 
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '2rem' }}>
-                        <span style={{ fontSize: '2rem', fontWeight: 600 }}>${price.toFixed(2)}</span>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '1rem' }}>
+                        <span style={{ fontSize: '2.5rem', fontWeight: 600 }}>${price.toFixed(2)}</span>
+                        {product.priceOriginal && !isWholesale && (
+                            <span style={{
+                                textDecoration: 'line-through',
+                                color: '#ef4444',
+                                fontSize: '1.2rem',
+                                fontWeight: 500
+                            }}>
+                                ${product.priceOriginal.toFixed(2)}
+                            </span>
+                        )}
                         {isWholesale && (
                             <span style={{ textDecoration: 'line-through', color: 'var(--color-text-muted)' }}>
                                 PVP: ${product.priceRetail.toFixed(2)}
                             </span>
                         )}
                     </div>
+
+                    {product.priceOriginal && !isWholesale && (
+                        <div style={{
+                            display: 'inline-block',
+                            backgroundColor: '#ef4444',
+                            color: 'white',
+                            padding: '0.4rem 1rem',
+                            borderRadius: '999px',
+                            fontSize: '0.8rem',
+                            fontWeight: 700,
+                            marginBottom: '2rem',
+                            boxShadow: '0 4px 12px rgba(239, 68, 68, 0.2)'
+                        }}>
+                            ¡GRAN OFERTA!
+                        </div>
+                    )}
 
                     <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', marginBottom: '2.5rem', lineHeight: 1.6 }}>
                         {product.description}

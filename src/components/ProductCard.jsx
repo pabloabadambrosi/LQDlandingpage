@@ -65,6 +65,23 @@ export default function ProductCard({ product, onAddToCart, isWholesale, onClick
                         MAYORISTA
                     </div>
                 )}
+                {product.priceOriginal && !isWholesale && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '12px',
+                        backgroundColor: '#ef4444',
+                        color: 'white',
+                        padding: '5px 10px',
+                        borderRadius: '999px',
+                        fontSize: '0.65rem',
+                        fontWeight: '700',
+                        letterSpacing: '0.05em',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                    }}>
+                        OFERTA
+                    </div>
+                )}
             </div>
             <div style={{ padding: '1.25rem 0', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem', opacity: 0.6 }}>
@@ -85,6 +102,11 @@ export default function ProductCard({ product, onAddToCart, isWholesale, onClick
                         <span style={{ fontSize: '1.1rem', fontWeight: 600 }}>
                             ${price.toFixed(2)}
                         </span>
+                        {product.priceOriginal && !isWholesale && (
+                            <span style={{ fontSize: '0.75rem', color: '#ef4444', textDecoration: 'line-through', fontWeight: 500 }}>
+                                ${product.priceOriginal.toFixed(2)}
+                            </span>
+                        )}
                         {isWholesale && (
                             <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textDecoration: 'line-through' }}>
                                 PVP: ${product.priceRetail.toFixed(2)}
