@@ -137,6 +137,6 @@ export const products = [
     ],
     category: 'Ropa',
     image: '/images/Liquide Socks.jpg',
-    description: 'Medias de ciclismo y sportwear de alto rendimiento. Comodidad y estilo Liquide.'
+    description: 'Calcetines técnicos de alto rendimiento. Compresión precisa, máxima transpirabilidad y el estilo audaz de Liquide para dejar huella en cada pedalada.'
   }
 ];
