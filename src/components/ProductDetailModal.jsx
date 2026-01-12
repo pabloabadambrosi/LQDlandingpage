@@ -127,7 +127,11 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <CheckCircle size={20} color="#10B981" />
-                            <span style={{ fontSize: '0.95rem' }}>Fórmula biodegradable, amigable con el ambiente.</span>
+                            <span style={{ fontSize: '0.95rem' }}>
+                                {product.category === 'Ropa'
+                                    ? 'Diseño ergonómico y ajuste de alto rendimiento.'
+                                    : 'Fórmula biodegradable, amigable con el ambiente.'}
+                            </span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                             <Truck size={20} color="var(--color-primary)" />
