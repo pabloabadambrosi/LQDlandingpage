@@ -422,14 +422,13 @@ function App() {
                             />
                         </div>
 
-                        {/* Category Tabs */}
                         <div style={{
                             display: 'flex',
                             gap: '0.5rem',
                             flexWrap: 'wrap',
                             justifyContent: 'center'
                         }}>
-                            {['Todos', 'Limpieza', 'Lubricantes', 'Mantenimiento', 'Acabados', 'Selladores'].map(cat => (
+                            {['Todos', 'Limpieza', 'Lubricantes', 'Mantenimiento', 'Acabados', 'Selladores', 'Ropa'].map(cat => (
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}

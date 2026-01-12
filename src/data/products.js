@@ -125,5 +125,18 @@ export const products = [
     category: 'Limpieza',
     image: '/images/Wash Tutti.png',
     description: 'Jabón concentrado con aroma a frutas para tu bicicleta.'
+  },
+  {
+    id: 11,
+    name: 'Liquide Socks',
+    priceRetail: 4.99,
+    priceWholesale: 2.50,
+    wholesaleTiers: [
+      { minQty: 12, price: 2.25 },
+      { minQty: 25, price: 2.15 }
+    ],
+    category: 'Ropa',
+    image: '/images/Liquide Socks.jpg',
+    description: 'Medias de ciclismo y sportwear de alto rendimiento. Comodidad y estilo Liquide.'
   }
 ];
