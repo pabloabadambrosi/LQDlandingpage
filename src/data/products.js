@@ -1,0 +1,129 @@
+export const products = [
+  {
+    id: 1,
+    name: 'Bike Cleaner',
+    priceRetail: 6.00,
+    priceWholesale: 3.43,
+    wholesaleTiers: [
+      { minQty: 12, price: 3.08 },
+      { minQty: 25, price: 2.98 }
+    ],
+    category: 'Limpieza',
+    image: '/images/Bike Cleaner.png',
+    description: 'Limpiador especializado para bicicletas, elimina suciedad y barro.'
+  },
+  {
+    id: 2,
+    name: 'Bio Degreaser',
+    priceRetail: 6.00,
+    priceWholesale: 3.43,
+    wholesaleTiers: [
+      { minQty: 12, price: 3.08 },
+      { minQty: 25, price: 2.98 }
+    ],
+    category: 'Limpieza',
+    image: '/images/BioDegreaser.png',
+    description: 'Desengrasante biodegradable potente para cadenas y transmisiones.'
+  },
+  {
+    id: 3,
+    name: 'Biolube Dry',
+    priceRetail: 7.00,
+    priceWholesale: 3.32,
+    wholesaleTiers: [
+      { minQty: 12, price: 2.99 },
+      { minQty: 25, price: 2.89 }
+    ],
+    category: 'Lubricantes',
+    image: '/images/Biolube Dry.png',
+    description: 'Lubricante para condiciones secas, mantiene la cadena limpia.'
+  },
+  {
+    id: 4,
+    name: 'Biolube Wet',
+    priceRetail: 7.00,
+    priceWholesale: 3.32,
+    wholesaleTiers: [
+      { minQty: 12, price: 2.99 },
+      { minQty: 25, price: 2.89 }
+    ],
+    category: 'Lubricantes',
+    image: '/images/Biolube Wet.png',
+    description: 'Lubricante para condiciones húmedas, resistente al agua.'
+  },
+  {
+    id: 5,
+    name: 'Desoxidante',
+    priceRetail: 6.00,
+    priceWholesale: 2.17,
+    wholesaleTiers: [
+      { minQty: 12, price: 1.96 },
+      { minQty: 25, price: 1.89 }
+    ],
+    category: 'Mantenimiento',
+    image: '/images/Desoxidante.png',
+    description: 'Elimina el óxido y protege las partes metálicas.'
+  },
+  {
+    id: 6,
+    name: 'Scream Cleaner',
+    priceRetail: 5.00,
+    priceWholesale: 2.17,
+    wholesaleTiers: [
+      { minQty: 12, price: 1.96 },
+      { minQty: 25, price: 1.89 }
+    ],
+    category: 'Limpieza',
+    image: '/images/Scream Cleaner.png',
+    description: 'Limpiador de alto rendimiento para todo tipo de superficies.'
+  },
+  {
+    id: 7,
+    name: 'Silicon Shine',
+    priceRetail: 6.00,
+    priceWholesale: 3.43,
+    wholesaleTiers: [
+      { minQty: 12, price: 3.26 },
+      { minQty: 25, price: 2.98 }
+    ],
+    category: 'Acabados',
+    image: '/images/Silicon Shine.png',
+    description: 'Deja un acabado brillante y protege contra la suciedad.'
+  },
+  {
+    id: 8,
+    name: 'Tubeless Sealant',
+    priceRetail: 18.00,
+    priceWholesale: 9.80,
+    wholesaleTiers: [], // Kept as placeholder
+    category: 'Selladores',
+    image: '/images/Tubeeles Sealeant.png',
+    description: 'Sellador para llantas tubeless, repara pinchazos al instante.'
+  },
+  {
+    id: 9,
+    name: "Wash O'Mango",
+    priceRetail: 5.00,
+    priceWholesale: 2.17,
+    wholesaleTiers: [
+      { minQty: 12, price: 1.96 },
+      { minQty: 25, price: 1.89 }
+    ],
+    category: 'Limpieza',
+    image: "/images/Wash O'Mango.png",
+    description: 'Jabón concentrado con aroma a mango para un lavado profundo.'
+  },
+  {
+    id: 10,
+    name: 'Wash Tutti',
+    priceRetail: 5.00,
+    priceWholesale: 2.17,
+    wholesaleTiers: [
+      { minQty: 12, price: 1.96 },
+      { minQty: 25, price: 1.89 }
+    ],
+    category: 'Limpieza',
+    image: '/images/Wash Tutti.png',
+    description: 'Jabón concentrado con aroma a frutas para tu bicicleta.'
+  }
+];
