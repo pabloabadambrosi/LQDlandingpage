@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ShoppingCart, X, Trash2, Plus, Minus, Users, MessageCircle, Instagram, Search } from 'lucide-react'
+import { ShoppingCart, X, Trash2, Plus, Minus, Users, MessageCircle, Instagram, Search, Check } from 'lucide-react'
 import ProductList from './components/ProductList'
 import CheckoutModal from './components/CheckoutModal'
 import ContactModal from './components/ContactModal'
@@ -7,16 +7,20 @@ import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import WhatsAppButton from './components/WhatsAppButton'
 import ProductDetailModal from './components/ProductDetailModal'
+import BikeCareGuide from './components/BikeCareGuide'
 
 function App() {
     const [cartItems, setCartItems] = useState([])
     const [isCartOpen, setIsCartOpen] = useState(false)
-    const [isWholesale, setIsWholesale] = useState(false)
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
     const [isContactOpen, setIsContactOpen] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [activeCategory, setActiveCategory] = useState('Todos')
     const [selectedProduct, setSelectedProduct] = useState(null)
+    const [showToast, setShowToast] = useState(false)
+    const [animateCart, setAnimateCart] = useState(false)
+    const [priceRange, setPriceRange] = useState('all') // 'all', 'low', 'mid', 'high'
+    const [isLoading, setIsLoading] = useState(false)
 
     const addToCart = (product) => {
         setCartItems(prev => {
@@ -26,22 +30,18 @@ function App() {
                     item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
                 )
             }
-            return [...prev, { ...product, quantity: isWholesale ? 6 : 1 }]
+            return [...prev, { ...product, quantity: 1 }]
         })
-        setIsCartOpen(true)
+
+        // UX Feedback
+        setShowToast(true)
+        setAnimateCart(true)
+        setTimeout(() => setShowToast(false), 2000)
+        setTimeout(() => setAnimateCart(false), 500)
+
+        // setIsCartOpen(true) // Removed auto-open for better flow, using toast instead
     }
 
-    const toggleWholesaleMode = () => {
-        const newMode = !isWholesale;
-        setIsWholesale(newMode);
-
-        if (newMode) {
-            // Enforce minimum quantity of 6 when switching to Wholesale
-            setCartItems(prev => prev.map(item =>
-                item.quantity < 6 ? { ...item, quantity: 6 } : item
-            ));
-        }
-    }
 
     const updateQuantity = (id, change) => {
         setCartItems(prev => prev.map(item => {
@@ -57,29 +57,19 @@ function App() {
         setCartItems(prev => prev.filter(item => item.id !== id))
     }
 
-    const determinePrice = (item, quantity, wholesaleMode) => {
-        if (!wholesaleMode) return item.priceRetail
-
-        // Find the applicable tier
-        if (item.wholesaleTiers && item.wholesaleTiers.length > 0) {
-            // Sort tiers by minQty descending to find the highest match
-            const tiers = [...item.wholesaleTiers].sort((a, b) => b.minQty - a.minQty)
-            const tier = tiers.find(t => quantity >= t.minQty)
-            if (tier) return tier.price
-        }
-
-        return item.priceWholesale
+    const determinePrice = (item) => {
+        return item.priceRetail
     }
 
     const cartTotal = cartItems.reduce((sum, item) => {
-        const price = determinePrice(item, item.quantity, isWholesale)
+        const price = determinePrice(item)
         return sum + (price * item.quantity)
     }, 0)
     const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
     const handleConfirmOrder = (customerData) => {
         // Construct the WhatsApp message
-        let message = `*NUEVO PEDIDO DE ${isWholesale ? 'DISTRIBUIDOR' : 'CLIENTE'}*\n\n`;
+        let message = `*NUEVO PEDIDO DE CLIENTE*\n\n`;
         message += `*Cliente:* ${customerData.name}\n`;
         message += `*Tel:* ${customerData.phone}\n`;
         message += `*Email:* ${customerData.email}\n`;
@@ -87,7 +77,7 @@ function App() {
 
         message += `*Detalle del Pedido:*\n`;
         cartItems.forEach(item => {
-            const price = determinePrice(item, item.quantity, isWholesale);
+            const price = determinePrice(item);
             message += `- ${item.quantity}x ${item.name} ($${price.toFixed(2)})\n`;
         });
 
@@ -141,6 +131,27 @@ function App() {
         setIsContactOpen(false);
     };
 
+    const handleCategoryChange = (cat) => {
+        setIsLoading(true);
+        setActiveCategory(cat);
+        setTimeout(() => setIsLoading(false), 500); // Simulated loading for UX
+    };
+
+    const handlePriceRangeChange = (range) => {
+        setIsLoading(true);
+        setPriceRange(range);
+        setTimeout(() => setIsLoading(false), 500);
+    };
+
+    const handleSearchChange = (query) => {
+        setSearchQuery(query);
+        // Only trigger loading if query is significant to avoid flickering on every keypress
+        if (query.length === 0 || query.length > 2) {
+            setIsLoading(true);
+            setTimeout(() => setIsLoading(false), 300);
+        }
+    };
+
     return (
         <div className="app">
             <header style={{
@@ -191,64 +202,10 @@ function App() {
                             Contáctanos
                         </button>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                            <button
-                                className="btn"
-                                onClick={() => isWholesale && toggleWholesaleMode()}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '0.4rem',
-                                    padding: '0.4rem 0.8rem',
-                                    fontSize: '0.7rem',
-                                    border: '1px solid var(--color-border)',
-                                    borderRadius: '999px',
-                                    backgroundColor: !isWholesale ? 'var(--color-primary)' : 'transparent',
-                                    color: !isWholesale ? 'white' : 'var(--color-text)',
-                                    transition: 'all 0.2s ease',
-                                    minWidth: '105px'
-                                }}
-                            >
-                                <span style={{
-                                    width: '6px',
-                                    height: '6px',
-                                    borderRadius: '50%',
-                                    backgroundColor: !isWholesale ? '#4ade80' : '#e5e7eb'
-                                }}></span>
-                                Cliente
-                            </button>
 
-                            <button
-                                className="btn"
-                                onClick={() => !isWholesale && toggleWholesaleMode()}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '0.4rem',
-                                    padding: '0.4rem 0.8rem',
-                                    fontSize: '0.7rem',
-                                    border: '1px solid var(--color-border)',
-                                    borderRadius: '999px',
-                                    backgroundColor: isWholesale ? 'var(--color-primary)' : 'transparent',
-                                    color: isWholesale ? 'white' : 'var(--color-text)',
-                                    transition: 'all 0.2s ease',
-                                    minWidth: '105px'
-                                }}
-                            >
-                                <span style={{
-                                    width: '6px',
-                                    height: '6px',
-                                    borderRadius: '50%',
-                                    backgroundColor: isWholesale ? '#4ade80' : '#e5e7eb'
-                                }}></span>
-                                Distribuidor
-                            </button>
-                        </div>
 
                         <button
-                            className="btn"
+                            className={`btn ${animateCart ? 'animate-cart' : ''}`}
                             style={{ position: 'relative', padding: '0.5rem' }}
                             onClick={() => setIsCartOpen(true)}
                         >
@@ -359,7 +316,10 @@ function App() {
                         </div>
                     </div>
                 </div>
-            </section>
+        </div>
+            </section >
+
+            <BikeCareGuide />
 
             <main className="container" style={{ padding: '0 1.5rem 4rem', minHeight: '80vh' }}>
                 <div style={{ marginBottom: '3rem' }}>
@@ -397,7 +357,7 @@ function App() {
                                 type="text"
                                 placeholder="Buscar productos..."
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={(e) => handleSearchChange(e.target.value)}
                                 style={{
                                     width: '100%',
                                     padding: '1rem 1rem 1rem 3.5rem',
@@ -431,7 +391,7 @@ function App() {
                             {['Todos', 'Limpieza', 'Lubricantes', 'Mantenimiento', 'Acabados', 'Selladores', 'Ropa'].map(cat => (
                                 <button
                                     key={cat}
-                                    onClick={() => setActiveCategory(cat)}
+                                    onClick={() => handleCategoryChange(cat)}
                                     style={{
                                         padding: '0.6rem 1.5rem',
                                         borderRadius: '999px',
@@ -449,19 +409,52 @@ function App() {
                                 </button>
                             ))}
                         </div>
+
+                        {/* Price Filters */}
+                        <div style={{
+                            display: 'flex',
+                            gap: '1rem',
+                            fontSize: '0.85rem',
+                            color: 'var(--color-text-muted)',
+                            alignItems: 'center'
+                        }}>
+                            <span>Filtrar por precio:</span>
+                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                {[
+                                    { label: 'Todos', value: 'all' },
+                                    { label: '< $6', value: 'low' },
+                                    { label: '$6 - $10', value: 'mid' },
+                                    { label: '> $10', value: 'high' }
+                                ].map(range => (
+                                    <button
+                                        key={range.value}
+                                        onClick={() => handlePriceRangeChange(range.value)}
+                                        style={{
+                                            color: priceRange === range.value ? 'var(--color-primary)' : 'inherit',
+                                            fontWeight: priceRange === range.value ? 600 : 400,
+                                            textDecoration: priceRange === range.value ? 'underline' : 'none',
+                                            padding: '0.2rem 0.5rem'
+                                        }}
+                                    >
+                                        {range.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     <ProductList
                         onAddToCart={addToCart}
-                        isWholesale={isWholesale}
                         searchQuery={searchQuery}
                         activeCategory={activeCategory}
+                        priceRange={priceRange}
+                        isLoading={isLoading}
                         onProductClick={(p) => setSelectedProduct(p)}
                     />
                 </div>
             </main>
 
-            {/* B2B / Wholesale Inquiry Section */}
+    {/* B2B / Wholesale Inquiry Section */ }
             <section style={{
                 backgroundColor: 'var(--color-light-gray)',
                 padding: '6rem 1.5rem',
@@ -567,138 +560,133 @@ function App() {
                 </div>
             </footer>
 
-            {/* Cart Sidebar Overlay */}
-            {
-                isCartOpen && (
-                    <div style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        backdropFilter: 'blur(2px)',
-                        zIndex: 200,
-                        display: 'flex',
-                        justifyContent: 'flex-end'
-                    }} onClick={() => setIsCartOpen(false)}>
+    {/* Cart Sidebar Overlay */ }
+    {
+        isCartOpen && (
+            <div style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0,0,0,0.3)',
+                backdropFilter: 'blur(2px)',
+                zIndex: 200,
+                display: 'flex',
+                justifyContent: 'flex-end'
+            }} onClick={() => setIsCartOpen(false)}>
 
-                        {/* Cart Sidebar */}
-                        <div style={{
-                            width: '100%',
-                            maxWidth: '450px',
-                            backgroundColor: 'var(--color-surface)',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            boxShadow: 'var(--shadow-lg)',
-                            animation: 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                        }} onClick={e => e.stopPropagation()}>
+                {/* Cart Sidebar */}
+                <div style={{
+                    width: '100%',
+                    maxWidth: '450px',
+                    backgroundColor: 'var(--color-surface)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxShadow: 'var(--shadow-lg)',
+                    animation: 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }} onClick={e => e.stopPropagation()}>
 
-                            <div style={{ padding: '2rem', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <h2 style={{ fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em' }}>Tu Carrito ({cartCount})</h2>
+                    <div style={{ padding: '2rem', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2 style={{ fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em' }}>Tu Carrito ({cartCount})</h2>
+                        <button
+                            onClick={() => setIsCartOpen(false)}
+                            className="btn"
+                            style={{ padding: '0.25rem' }}
+                        >
+                            <X size={24} strokeWidth={1} />
+                        </button>
+                    </div>
+
+                    <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
+                        {cartItems.length === 0 ? (
+                            <div style={{ textAlign: 'center', color: 'var(--color-text-muted)', marginTop: '4rem' }}>
+                                <ShoppingCart size={40} style={{ opacity: 0.1, margin: '0 auto 1.5rem', display: 'block' }} />
+                                <p style={{ fontWeight: '300' }}>Tu carrito está vacío.</p>
                                 <button
+                                    className="btn btn-primary"
+                                    style={{ marginTop: '2rem' }}
                                     onClick={() => setIsCartOpen(false)}
-                                    className="btn"
-                                    style={{ padding: '0.25rem' }}
                                 >
-                                    <X size={24} strokeWidth={1} />
+                                    Empezar a Comprar
                                 </button>
                             </div>
-
-                            <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
-                                {cartItems.length === 0 ? (
-                                    <div style={{ textAlign: 'center', color: 'var(--color-text-muted)', marginTop: '4rem' }}>
-                                        <ShoppingCart size={40} style={{ opacity: 0.1, margin: '0 auto 1.5rem', display: 'block' }} />
-                                        <p style={{ fontWeight: '300' }}>Tu carrito está vacío.</p>
-                                        <button
-                                            className="btn btn-primary"
-                                            style={{ marginTop: '2rem' }}
-                                            onClick={() => setIsCartOpen(false)}
-                                        >
-                                            Empezar a Comprar
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                        {cartItems.map(item => (
-                                            <li key={item.id} style={{ display: 'flex', gap: '1.5rem' }}>
-                                                <div style={{ width: '90px', height: '110px', backgroundColor: '#f9fafb', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
-                                                    <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
+                        ) : (
+                            <ul style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                {cartItems.map(item => (
+                                    <li key={item.id} style={{ display: 'flex', gap: '1.5rem' }}>
+                                        <div style={{ width: '90px', height: '110px', backgroundColor: '#f9fafb', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
+                                            <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
+                                        </div>
+                                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.25rem 0' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
+                                                <h4 style={{ fontSize: '1rem', fontWeight: 500, letterSpacing: '-0.01em', paddingRight: '1rem' }}>{item.name}</h4>
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                                    <span style={{ fontWeight: 500 }}>
+                                                        ${(determinePrice(item) * item.quantity).toFixed(2)}
+                                                    </span>
                                                 </div>
-                                                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.25rem 0' }}>
-                                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
-                                                        <h4 style={{ fontSize: '1rem', fontWeight: 500, letterSpacing: '-0.01em', paddingRight: '1rem' }}>{item.name}</h4>
-                                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                                            <span style={{ fontWeight: 500 }}>
-                                                                ${(determinePrice(item, item.quantity, isWholesale) * item.quantity).toFixed(2)}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'auto' }}>
-                                                        ${determinePrice(item, item.quantity, isWholesale).toFixed(2)} / un
-                                                        {isWholesale && item.wholesaleTiers && (
-                                                            <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', marginLeft: '0.5rem' }}>
-                                                                (Tier aplicado)
-                                                            </span>
-                                                        )}
-                                                    </p>
+                                            </div>
+                                            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'auto' }}>
+                                                ${determinePrice(item).toFixed(2)} / un
+                                            </p>
 
-                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: '999px', padding: '0.125rem' }}>
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, -1)}
-                                                                style={{ padding: '0.25rem 0.5rem', display: 'flex', opacity: item.quantity <= (isWholesale ? 6 : 1) ? 0.3 : 1 }}
-                                                                disabled={item.quantity <= (isWholesale ? 6 : 1)}
-                                                            >
-                                                                <Minus size={12} />
-                                                            </button>
-                                                            <span style={{ padding: '0 0.5rem', fontSize: '0.85rem', fontWeight: 500, minWidth: '1.5rem', textAlign: 'center' }}>{item.quantity}</span>
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, 1)}
-                                                                style={{ padding: '0.25rem 0.5rem', display: 'flex' }}
-                                                            >
-                                                                <Plus size={12} />
-                                                            </button>
-                                                        </div>
-
-                                                        <button
-                                                            onClick={() => removeFromCart(item.id)}
-                                                            style={{ color: 'var(--color-text-muted)', padding: '0.25rem', fontSize: '0.8rem', textDecoration: 'underline' }}
-                                                            aria-label="Remove item"
-                                                        >
-                                                            Eliminar
-                                                        </button>
-                                                    </div>
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: '999px', padding: '0.125rem' }}>
+                                                    <button
+                                                        onClick={() => updateQuantity(item.id, -1)}
+                                                        style={{ padding: '0.25rem 0.5rem', display: 'flex', opacity: item.quantity <= 1 ? 0.3 : 1 }}
+                                                        disabled={item.quantity <= 1}
+                                                    >
+                                                        <Minus size={12} />
+                                                    </button>
+                                                    <span style={{ padding: '0 0.5rem', fontSize: '0.85rem', fontWeight: 500, minWidth: '1.5rem', textAlign: 'center' }}>{item.quantity}</span>
+                                                    <button
+                                                        onClick={() => updateQuantity(item.id, 1)}
+                                                        style={{ padding: '0.25rem 0.5rem', display: 'flex' }}
+                                                    >
+                                                        <Plus size={12} />
+                                                    </button>
                                                 </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
 
-                            {cartItems.length > 0 && (
-                                <div style={{ padding: '2rem', borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', fontSize: '1.25rem', fontWeight: 500, letterSpacing: '-0.02em' }}>
-                                        <span>Subtotal</span>
-                                        <span>${cartTotal.toFixed(2)}</span>
-                                    </div>
-                                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', textAlign: 'center' }}>
-                                        Impuestos y envío calculados al finalizar.
-                                    </p>
-                                    <button
-                                        className="btn btn-primary"
-                                        style={{ width: '100%', padding: '1.125rem' }}
-                                        onClick={() => setIsCheckoutOpen(true)}
-                                    >
-                                        Finalizar Compra
-                                    </button>
-                                </div>
-                            )}
-                        </div>
+                                                <button
+                                                    onClick={() => removeFromCart(item.id)}
+                                                    style={{ color: 'var(--color-text-muted)', padding: '0.25rem', fontSize: '0.8rem', textDecoration: 'underline' }}
+                                                    aria-label="Remove item"
+                                                >
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
-                )
-            }
+
+                    {cartItems.length > 0 && (
+                        <div style={{ padding: '2rem', borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', fontSize: '1.25rem', fontWeight: 500, letterSpacing: '-0.02em' }}>
+                                <span>Subtotal</span>
+                                <span>${cartTotal.toFixed(2)}</span>
+                            </div>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', textAlign: 'center' }}>
+                                Impuestos y envío calculados al finalizar.
+                            </p>
+                            <button
+                                className="btn btn-primary"
+                                style={{ width: '100%', padding: '1.125rem' }}
+                                onClick={() => setIsCheckoutOpen(true)}
+                            >
+                                Finalizar Compra
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </div>
+        )
+    }
 
             <CheckoutModal
                 isOpen={isCheckoutOpen}
@@ -719,10 +707,19 @@ function App() {
                 isOpen={!!selectedProduct}
                 onClose={() => setSelectedProduct(null)}
                 onAddToCart={addToCart}
-                isWholesale={isWholesale}
             />
 
             <WhatsAppButton />
+
+    {/* Toast Notification */ }
+    {
+        showToast && (
+            <div className="toast">
+                <Check size={18} />
+                <span>Producto añadido al carrito</span>
+            </div>
+        )
+    }
         </div >
     )
 }

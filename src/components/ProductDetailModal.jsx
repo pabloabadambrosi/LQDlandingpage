@@ -1,10 +1,10 @@
 import React from 'react';
 import { X, ShoppingCart, CheckCircle, Truck, Shield } from 'lucide-react';
 
-export default function ProductDetailModal({ product, isOpen, onClose, onAddToCart, isWholesale }) {
+export default function ProductDetailModal({ product, isOpen, onClose, onAddToCart }) {
     if (!isOpen || !product) return null;
 
-    const price = isWholesale ? product.priceWholesale : product.priceRetail;
+    const price = product.priceRetail;
 
     return (
         <div style={{
@@ -72,21 +72,6 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                             objectFit: 'contain'
                         }}
                     />
-                    {isWholesale && (
-                        <div style={{
-                            position: 'absolute',
-                            top: '2rem',
-                            left: '2rem',
-                            backgroundColor: 'black',
-                            color: 'white',
-                            padding: '0.5rem 1rem',
-                            borderRadius: '999px',
-                            fontSize: '0.75rem',
-                            fontWeight: 700
-                        }}>
-                            PRECIO MAYORISTA
-                        </div>
-                    )}
                 </div>
 
                 {/* Right: Info Container */}
@@ -112,7 +97,7 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
 
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '1rem' }}>
                         <span style={{ fontSize: '2.5rem', fontWeight: 600 }}>${price.toFixed(2)}</span>
-                        {product.priceOriginal && !isWholesale && (
+                        {product.priceOriginal && (
                             <span style={{
                                 textDecoration: 'line-through',
                                 color: '#ef4444',
@@ -122,14 +107,9 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                                 ${product.priceOriginal.toFixed(2)}
                             </span>
                         )}
-                        {isWholesale && (
-                            <span style={{ textDecoration: 'line-through', color: 'var(--color-text-muted)' }}>
-                                PVP: ${product.priceRetail.toFixed(2)}
-                            </span>
-                        )}
                     </div>
 
-                    {product.priceOriginal && !isWholesale && (
+                    {product.priceOriginal && (
                         <div style={{
                             display: 'inline-block',
                             backgroundColor: '#ef4444',
@@ -186,18 +166,6 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                         <ShoppingCart size={20} />
                         Agregar al Carrito
                     </button>
-
-                    {isWholesale && product.wholesaleTiers?.length > 0 && (
-                        <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f9fafb', borderRadius: '1rem' }}>
-                            <p style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.5rem' }}>Precios por volumen:</p>
-                            {product.wholesaleTiers.map(tier => (
-                                <div key={tier.minQty} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#666' }}>
-                                    <span>Comprando {tier.minQty}+ unidades:</span>
-                                    <span style={{ fontWeight: 700 }}>${tier.price.toFixed(2)} c/u</span>
-                                </div>
-                            ))}
-                        </div>
-                    )}
                 </div>
             </div>
 

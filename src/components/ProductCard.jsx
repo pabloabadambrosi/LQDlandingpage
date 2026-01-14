@@ -1,16 +1,8 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
 
-export default function ProductCard({ product, onAddToCart, isWholesale, onClick }) {
-    const getBestWholesalePrice = () => {
-        if (!product.wholesaleTiers || product.wholesaleTiers.length === 0) return null;
-        // Find the lowest price in tiers
-        const minPrice = Math.min(...product.wholesaleTiers.map(t => t.price));
-        return minPrice;
-    };
-
-    const bestWholesalePrice = getBestWholesalePrice();
-    const price = isWholesale ? product.priceWholesale : product.priceRetail;
+export default function ProductCard({ product, onAddToCart, onClick }) {
+    const price = product.priceRetail;
 
     return (
         <div className="card product-card"
@@ -45,27 +37,43 @@ export default function ProductCard({ product, onAddToCart, isWholesale, onClick
                         transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                     className="product-image-hover"
-                    onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                    onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
                 />
-                {isWholesale && (
-                    <div style={{
+
+                {/* Quick View Overlay (Desktop only-ish, using opacity) */}
+                <div
+                    className="quick-view-overlay"
+                    style={{
                         position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        backgroundColor: 'var(--color-primary)',
-                        color: 'white',
-                        padding: '5px 10px',
-                        borderRadius: '999px',
-                        fontSize: '0.65rem',
-                        fontWeight: '700',
-                        letterSpacing: '0.05em',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                    }}>
-                        MAYORISTA
-                    </div>
-                )}
-                {product.priceOriginal && !isWholesale && (
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        backdropFilter: 'blur(4px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        opacity: 0,
+                        transition: 'opacity 0.3s ease',
+                        zIndex: 2
+                    }}
+                >
+                    <button
+                        className="btn"
+                        style={{
+                            backgroundColor: 'white',
+                            color: 'black',
+                            padding: '0.6rem 1.25rem',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                        }}
+                    >
+                        Vista Rápida
+                    </button>
+                </div>
+
+                {product.priceOriginal && (
                     <div style={{
                         position: 'absolute',
                         top: '12px',
@@ -77,7 +85,8 @@ export default function ProductCard({ product, onAddToCart, isWholesale, onClick
                         fontSize: '0.65rem',
                         fontWeight: '700',
                         letterSpacing: '0.05em',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                        zIndex: 3
                     }}>
                         OFERTA
                     </div>
@@ -91,25 +100,14 @@ export default function ProductCard({ product, onAddToCart, isWholesale, onClick
                     {product.name}
                 </h3>
 
-                {isWholesale && bestWholesalePrice && (
-                    <p style={{ fontSize: '0.75rem', color: 'var(--color-primary)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                        Desde ${bestWholesalePrice.toFixed(2)} comprando volumen
-                    </p>
-                )}
-
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <span style={{ fontSize: '1.1rem', fontWeight: 600 }}>
                             ${price.toFixed(2)}
                         </span>
-                        {product.priceOriginal && !isWholesale && (
+                        {product.priceOriginal && (
                             <span style={{ fontSize: '0.75rem', color: '#ef4444', textDecoration: 'line-through', fontWeight: 500 }}>
                                 ${product.priceOriginal.toFixed(2)}
-                            </span>
-                        )}
-                        {isWholesale && (
-                            <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textDecoration: 'line-through' }}>
-                                PVP: ${product.priceRetail.toFixed(2)}
                             </span>
                         )}
                     </div>
