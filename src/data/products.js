@@ -148,5 +148,28 @@ export const products = [
     image: 'images/Liquide Cap.jpg',
     images: ['images/Liquide Cap.jpg', 'images/Liquide Cap Lifestyle.jpg'],
     description: 'Gorra premium con diseño estructurado y el estilo inconfundible de Liquide. Cuenta con un parche bordado de alta calidad que resalta nuestra identidad en cada detalle. Perfecta para el post-ride o el uso diario.'
+  },
+  {
+    id: 13,
+    name: 'Gorra Cat Liquide',
+    priceRetail: 9.99,
+    priceWholesale: 9.99,
+    priceOriginal: 18.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: 'images/Liquide Cap Red Cat.png',
+    description: 'Gorra premium con diseño estructurado y el audaz parche del gato Liquide. Calidad superior y estilo único para destacar en cualquier lugar.'
+  },
+  {
+    id: 14,
+    name: 'Gorra Lightning Liquide',
+    priceRetail: 9.99,
+    priceWholesale: 9.99,
+    priceOriginal: 18.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: 'images/Liquide Cap Pink Lightning.jpg',
+    images: ['images/Liquide Cap Pink Lightning.jpg', 'images/Liquide Cap Pink Lightning Lifestyle.jpg'],
+    description: 'Gorra premium color rosa vibrante con el parche Lightning de Liquide. Diseñada para quienes no temen destacar, combina frescura y el estilo técnico que nos caracteriza.'
   }
 ];
