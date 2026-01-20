@@ -136,5 +136,16 @@ export const products = [
     category: 'Ropa',
     image: '/images/Liquide Socks.jpg',
     description: 'Calcetines técnicos de alto rendimiento. Compresión precisa, máxima transpirabilidad y el estilo audaz de Liquide para dejar huella en cada pedalada.'
+  },
+  {
+    id: 12,
+    name: 'Gorra Liquide',
+    priceRetail: 9.99,
+    priceWholesale: 9.99,
+    priceOriginal: 18.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: '/images/Liquide Cap.jpg',
+    description: 'Gorra premium con diseño estructurado y el estilo inconfundible de Liquide. Cuenta con un parche bordado de alta calidad que resalta nuestra identidad en cada detalle. Perfecta para el post-ride o el uso diario.'
   }
 ];
