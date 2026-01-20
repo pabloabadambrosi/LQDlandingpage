@@ -146,6 +146,7 @@ export const products = [
     wholesaleTiers: [],
     category: 'Ropa',
     image: '/images/Liquide Cap.jpg',
+    images: ['/images/Liquide Cap.jpg', '/images/Liquide Cap Lifestyle.jpg'],
     description: 'Gorra premium con diseño estructurado y el estilo inconfundible de Liquide. Cuenta con un parche bordado de alta calidad que resalta nuestra identidad en cada detalle. Perfecta para el post-ride o el uso diario.'
   }
 ];

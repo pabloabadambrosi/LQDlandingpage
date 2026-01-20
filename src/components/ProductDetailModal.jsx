@@ -1,10 +1,21 @@
-import React from 'react';
-import { X, ShoppingCart, CheckCircle, Truck, Shield } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ShoppingCart, CheckCircle, Truck, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function ProductDetailModal({ product, isOpen, onClose, onAddToCart }) {
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+    // Reset index when product changes or modal opens
+    useEffect(() => {
+        setCurrentImgIndex(0);
+    }, [product, isOpen]);
+
     if (!isOpen || !product) return null;
 
     const price = product.priceRetail;
+    const images = product.images || [product.image];
+
+    const nextImg = () => setCurrentImgIndex((prev) => (prev + 1) % images.length);
+    const prevImg = () => setCurrentImgIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
         <div style={{
@@ -25,7 +36,7 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
             <div style={{
                 backgroundColor: 'white',
                 width: '100%',
-                maxWidth: '900px',
+                maxWidth: '950px',
                 maxHeight: '90vh',
                 borderRadius: '2rem',
                 overflow: 'hidden',
@@ -47,31 +58,88 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                         backgroundColor: 'rgba(255,255,255,0.9)',
                         borderRadius: '50%',
                         padding: '0.5rem',
-                        display: 'flex'
+                        display: 'flex',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                     }}
                 >
                     <X size={24} />
                 </button>
 
-                {/* Left: Image Container */}
+                {/* Left: Image Container & Gallery */}
                 <div style={{
                     flex: '1',
-                    backgroundColor: '#fff',
+                    backgroundColor: '#f8f8f8',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '3rem',
-                    position: 'relative'
+                    padding: '2rem',
+                    position: 'relative',
+                    borderRight: '1px solid #eee'
                 }}>
-                    <img
-                        src={product.image}
-                        alt={product.name}
-                        style={{
-                            maxWidth: '100%',
-                            maxHeight: '100%',
-                            objectFit: 'contain'
-                        }}
-                    />
+                    <div style={{
+                        flex: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        position: 'relative'
+                    }}>
+                        <img
+                            src={images[currentImgIndex]}
+                            alt={product.name}
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '400px',
+                                objectFit: 'contain',
+                                transition: 'all 0.3s ease'
+                            }}
+                        />
+
+                        {images.length > 1 && (
+                            <>
+                                <button onClick={prevImg} style={{
+                                    position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)',
+                                    background: 'white', border: 'none', borderRadius: '50%', padding: '0.5rem', cursor: 'pointer',
+                                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)', display: 'flex'
+                                }}>
+                                    <ChevronLeft size={20} />
+                                </button>
+                                <button onClick={nextImg} style={{
+                                    position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)',
+                                    background: 'white', border: 'none', borderRadius: '50%', padding: '0.5rem', cursor: 'pointer',
+                                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)', display: 'flex'
+                                }}>
+                                    <ChevronRight size={20} />
+                                </button>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Thumbnails */}
+                    {images.length > 1 && (
+                        <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
+                            {images.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => setCurrentImgIndex(idx)}
+                                    style={{
+                                        width: '60px',
+                                        height: '60px',
+                                        borderRadius: '0.75rem',
+                                        overflow: 'hidden',
+                                        cursor: 'pointer',
+                                        border: `2px solid ${currentImgIndex === idx ? 'var(--color-primary)' : 'transparent'}`,
+                                        opacity: currentImgIndex === idx ? 1 : 0.6,
+                                        transition: 'all 0.2s ease',
+                                        backgroundColor: 'white'
+                                    }}
+                                >
+                                    <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Right: Info Container */}
@@ -80,7 +148,8 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                     padding: '4rem 3rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    overflowY: 'auto'
+                    overflowY: 'auto',
+                    backgroundColor: 'white'
                 }}>
                     <span style={{
                         fontSize: '0.8rem',
