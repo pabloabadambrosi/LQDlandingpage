@@ -316,8 +316,7 @@ function App() {
                         </div>
                     </div>
                 </div>
-        </div>
-            </section >
+            </section>
 
             <BikeCareGuide />
 
@@ -454,7 +453,7 @@ function App() {
                 </div>
             </main>
 
-    {/* B2B / Wholesale Inquiry Section */ }
+            {/* B2B / Wholesale Inquiry Section */}
             <section style={{
                 backgroundColor: 'var(--color-light-gray)',
                 padding: '6rem 1.5rem',
@@ -560,133 +559,133 @@ function App() {
                 </div>
             </footer>
 
-    {/* Cart Sidebar Overlay */ }
-    {
-        isCartOpen && (
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(0,0,0,0.3)',
-                backdropFilter: 'blur(2px)',
-                zIndex: 200,
-                display: 'flex',
-                justifyContent: 'flex-end'
-            }} onClick={() => setIsCartOpen(false)}>
+            {/* Cart Sidebar Overlay */}
+            {
+                isCartOpen && (
+                    <div style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.3)',
+                        backdropFilter: 'blur(2px)',
+                        zIndex: 200,
+                        display: 'flex',
+                        justifyContent: 'flex-end'
+                    }} onClick={() => setIsCartOpen(false)}>
 
-                {/* Cart Sidebar */}
-                <div style={{
-                    width: '100%',
-                    maxWidth: '450px',
-                    backgroundColor: 'var(--color-surface)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    boxShadow: 'var(--shadow-lg)',
-                    animation: 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                }} onClick={e => e.stopPropagation()}>
+                        {/* Cart Sidebar */}
+                        <div style={{
+                            width: '100%',
+                            maxWidth: '450px',
+                            backgroundColor: 'var(--color-surface)',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            boxShadow: 'var(--shadow-lg)',
+                            animation: 'slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                        }} onClick={e => e.stopPropagation()}>
 
-                    <div style={{ padding: '2rem', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <h2 style={{ fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em' }}>Tu Carrito ({cartCount})</h2>
-                        <button
-                            onClick={() => setIsCartOpen(false)}
-                            className="btn"
-                            style={{ padding: '0.25rem' }}
-                        >
-                            <X size={24} strokeWidth={1} />
-                        </button>
-                    </div>
-
-                    <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
-                        {cartItems.length === 0 ? (
-                            <div style={{ textAlign: 'center', color: 'var(--color-text-muted)', marginTop: '4rem' }}>
-                                <ShoppingCart size={40} style={{ opacity: 0.1, margin: '0 auto 1.5rem', display: 'block' }} />
-                                <p style={{ fontWeight: '300' }}>Tu carrito está vacío.</p>
+                            <div style={{ padding: '2rem', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <h2 style={{ fontSize: '1.1rem', fontWeight: 600, letterSpacing: '-0.02em' }}>Tu Carrito ({cartCount})</h2>
                                 <button
-                                    className="btn btn-primary"
-                                    style={{ marginTop: '2rem' }}
                                     onClick={() => setIsCartOpen(false)}
+                                    className="btn"
+                                    style={{ padding: '0.25rem' }}
                                 >
-                                    Empezar a Comprar
+                                    <X size={24} strokeWidth={1} />
                                 </button>
                             </div>
-                        ) : (
-                            <ul style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                {cartItems.map(item => (
-                                    <li key={item.id} style={{ display: 'flex', gap: '1.5rem' }}>
-                                        <div style={{ width: '90px', height: '110px', backgroundColor: '#f9fafb', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
-                                            <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
-                                        </div>
-                                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.25rem 0' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
-                                                <h4 style={{ fontSize: '1rem', fontWeight: 500, letterSpacing: '-0.01em', paddingRight: '1rem' }}>{item.name}</h4>
-                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                                                    <span style={{ fontWeight: 500 }}>
-                                                        ${(determinePrice(item) * item.quantity).toFixed(2)}
-                                                    </span>
+
+                            <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
+                                {cartItems.length === 0 ? (
+                                    <div style={{ textAlign: 'center', color: 'var(--color-text-muted)', marginTop: '4rem' }}>
+                                        <ShoppingCart size={40} style={{ opacity: 0.1, margin: '0 auto 1.5rem', display: 'block' }} />
+                                        <p style={{ fontWeight: '300' }}>Tu carrito está vacío.</p>
+                                        <button
+                                            className="btn btn-primary"
+                                            style={{ marginTop: '2rem' }}
+                                            onClick={() => setIsCartOpen(false)}
+                                        >
+                                            Empezar a Comprar
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                        {cartItems.map(item => (
+                                            <li key={item.id} style={{ display: 'flex', gap: '1.5rem' }}>
+                                                <div style={{ width: '90px', height: '110px', backgroundColor: '#f9fafb', borderRadius: 'var(--radius-sm)', overflow: 'hidden', flexShrink: 0 }}>
+                                                    <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
                                                 </div>
-                                            </div>
-                                            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'auto' }}>
-                                                ${determinePrice(item).toFixed(2)} / un
-                                            </p>
+                                                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.25rem 0' }}>
+                                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
+                                                        <h4 style={{ fontSize: '1rem', fontWeight: 500, letterSpacing: '-0.01em', paddingRight: '1rem' }}>{item.name}</h4>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                                                            <span style={{ fontWeight: 500 }}>
+                                                                ${(determinePrice(item) * item.quantity).toFixed(2)}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'auto' }}>
+                                                        ${determinePrice(item).toFixed(2)} / un
+                                                    </p>
 
-                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: '999px', padding: '0.125rem' }}>
-                                                    <button
-                                                        onClick={() => updateQuantity(item.id, -1)}
-                                                        style={{ padding: '0.25rem 0.5rem', display: 'flex', opacity: item.quantity <= 1 ? 0.3 : 1 }}
-                                                        disabled={item.quantity <= 1}
-                                                    >
-                                                        <Minus size={12} />
-                                                    </button>
-                                                    <span style={{ padding: '0 0.5rem', fontSize: '0.85rem', fontWeight: 500, minWidth: '1.5rem', textAlign: 'center' }}>{item.quantity}</span>
-                                                    <button
-                                                        onClick={() => updateQuantity(item.id, 1)}
-                                                        style={{ padding: '0.25rem 0.5rem', display: 'flex' }}
-                                                    >
-                                                        <Plus size={12} />
-                                                    </button>
+                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem' }}>
+                                                        <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: '999px', padding: '0.125rem' }}>
+                                                            <button
+                                                                onClick={() => updateQuantity(item.id, -1)}
+                                                                style={{ padding: '0.25rem 0.5rem', display: 'flex', opacity: item.quantity <= 1 ? 0.3 : 1 }}
+                                                                disabled={item.quantity <= 1}
+                                                            >
+                                                                <Minus size={12} />
+                                                            </button>
+                                                            <span style={{ padding: '0 0.5rem', fontSize: '0.85rem', fontWeight: 500, minWidth: '1.5rem', textAlign: 'center' }}>{item.quantity}</span>
+                                                            <button
+                                                                onClick={() => updateQuantity(item.id, 1)}
+                                                                style={{ padding: '0.25rem 0.5rem', display: 'flex' }}
+                                                            >
+                                                                <Plus size={12} />
+                                                            </button>
+                                                        </div>
+
+                                                        <button
+                                                            onClick={() => removeFromCart(item.id)}
+                                                            style={{ color: 'var(--color-text-muted)', padding: '0.25rem', fontSize: '0.8rem', textDecoration: 'underline' }}
+                                                            aria-label="Remove item"
+                                                        >
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
                                                 </div>
-
-                                                <button
-                                                    onClick={() => removeFromCart(item.id)}
-                                                    style={{ color: 'var(--color-text-muted)', padding: '0.25rem', fontSize: '0.8rem', textDecoration: 'underline' }}
-                                                    aria-label="Remove item"
-                                                >
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    {cartItems.length > 0 && (
-                        <div style={{ padding: '2rem', borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', fontSize: '1.25rem', fontWeight: 500, letterSpacing: '-0.02em' }}>
-                                <span>Subtotal</span>
-                                <span>${cartTotal.toFixed(2)}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                             </div>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', textAlign: 'center' }}>
-                                Impuestos y envío calculados al finalizar.
-                            </p>
-                            <button
-                                className="btn btn-primary"
-                                style={{ width: '100%', padding: '1.125rem' }}
-                                onClick={() => setIsCheckoutOpen(true)}
-                            >
-                                Finalizar Compra
-                            </button>
+
+                            {cartItems.length > 0 && (
+                                <div style={{ padding: '2rem', borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg)' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', fontSize: '1.25rem', fontWeight: 500, letterSpacing: '-0.02em' }}>
+                                        <span>Subtotal</span>
+                                        <span>${cartTotal.toFixed(2)}</span>
+                                    </div>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', textAlign: 'center' }}>
+                                        Impuestos y envío calculados al finalizar.
+                                    </p>
+                                    <button
+                                        className="btn btn-primary"
+                                        style={{ width: '100%', padding: '1.125rem' }}
+                                        onClick={() => setIsCheckoutOpen(true)}
+                                    >
+                                        Finalizar Compra
+                                    </button>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-            </div>
-        )
-    }
+                    </div>
+                )
+            }
 
             <CheckoutModal
                 isOpen={isCheckoutOpen}
@@ -711,15 +710,15 @@ function App() {
 
             <WhatsAppButton />
 
-    {/* Toast Notification */ }
-    {
-        showToast && (
-            <div className="toast">
-                <Check size={18} />
-                <span>Producto añadido al carrito</span>
-            </div>
-        )
-    }
+            {/* Toast Notification */}
+            {
+                showToast && (
+                    <div className="toast">
+                        <Check size={18} />
+                        <span>Producto añadido al carrito</span>
+                    </div>
+                )
+            }
         </div >
     )
 }
