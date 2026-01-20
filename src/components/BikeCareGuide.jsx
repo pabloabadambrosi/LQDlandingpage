@@ -167,65 +167,126 @@ export default function BikeCareGuide() {
 
                 {/* Comparison Section (The Authority Builder) */}
                 <div style={{
-                    backgroundColor: '#121212',
-                    borderRadius: '2rem',
-                    padding: '4rem 2rem',
-                    color: 'white',
-                    boxShadow: 'var(--shadow-lg)'
+                    position: 'relative',
+                    padding: '6rem 2rem',
+                    borderRadius: '3rem',
+                    overflow: 'hidden',
+                    background: '#0a0a0a', // Deep dark base
+                    boxShadow: '0 40px 100px -20px rgba(0,0,0,0.5)',
                 }}>
-                    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 300, marginBottom: '1rem' }}>
-                                Liquide vs. <span style={{ opacity: 0.6 }}>Lo Común</span>
+                    {/* Decorative Background Elements */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '-10%',
+                        right: '-5%',
+                        width: '400px',
+                        height: '400px',
+                        background: 'radial-gradient(circle, rgba(255,77,141,0.15) 0%, transparent 70%)',
+                        filter: 'blur(60px)',
+                        zIndex: 0
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        bottom: '-10%',
+                        left: '-5%',
+                        width: '300px',
+                        height: '300px',
+                        background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
+                        filter: 'blur(40px)',
+                        zIndex: 0
+                    }} />
+
+                    <div style={{ position: 'relative', zIndex: 2, maxWidth: '900px', margin: '0 auto' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <h3 style={{
+                                fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
+                                fontWeight: 300,
+                                marginBottom: '1rem',
+                                color: 'white'
+                            }}>
+                                Liquide vs. <span style={{ opacity: 0.4 }}>Lo Común</span>
                             </h3>
-                            <p style={{ opacity: 0.8, fontWeight: 300 }}>Por qué tu inversión merece un cuidado especializado.</p>
+                            <div style={{
+                                height: '2px',
+                                width: '60px',
+                                background: 'var(--color-primary)',
+                                margin: '0 auto 1.5rem',
+                                borderRadius: '99px'
+                            }} />
+                            <p style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 300, fontSize: '1.1rem' }}>
+                                Diferencias técnicas que protegen tu inversión.
+                            </p>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '2rem', alignItems: 'center' }}>
-
+                        {/* Glass Comparison Box */}
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                            gap: '1px',
+                            backgroundColor: 'rgba(255,255,255,0.1)', // Divider line
+                            borderRadius: '2rem',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            overflow: 'hidden',
+                            backdropFilter: 'blur(10px)',
+                            background: 'rgba(255,255,255,0.02)'
+                        }}>
                             {/* Liquide Side */}
-                            <div style={{ padding: '0 1rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <ShieldCheck size={24} color="#4ade80" />
-                                    <span style={{ fontSize: '1.1rem', fontWeight: 500 }}>Seguro con Carbono</span>
+                            <div style={{
+                                padding: '3.5rem 2.5rem',
+                                background: 'rgba(255,255,255,0.03)',
+                            }}>
+                                <div style={{ marginBottom: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ade80' }} />
+                                    <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', color: '#4ade80' }}>
+                                        Estándar Liquide
+                                    </span>
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <CheckCircle size={24} color="#4ade80" />
-                                    <span style={{ fontSize: '1.1rem', fontWeight: 500 }}>Biodegradable</span>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <CheckCircle size={24} color="#4ade80" />
-                                    <span style={{ fontSize: '1.1rem', fontWeight: 500 }}>Fórmula Anti-corrosión</span>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                    <CheckCircle size={24} color="#4ade80" />
-                                    <span style={{ fontSize: '1.1rem', fontWeight: 500 }}>Lubricación Cerámica</span>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                    {[
+                                        { icon: ShieldCheck, text: 'Seguro con Carbono & Pintura' },
+                                        { icon: CheckCircle, text: 'Biodegradable (Sin solventes)' },
+                                        { icon: CheckCircle, text: 'Fórmula con Inhibidores de Oxido' },
+                                        { icon: CheckCircle, text: 'Lubricación de Cerámica de Alta Fluidez' }
+                                    ].map((item, idx) => (
+                                        <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                                            <item.icon size={22} color="#4ade80" />
+                                            <span style={{ fontSize: '1.05rem', fontWeight: 400, color: 'white' }}>{item.text}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-
-                            {/* Divider */}
-                            <div style={{ height: '100%', width: '1px', backgroundColor: 'rgba(255,255,255,0.2)' }}></div>
 
                             {/* Generic Side */}
-                            <div style={{ padding: '0 1rem', opacity: 0.6 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <XCircle size={24} color="#ef4444" />
-                                    <span style={{ fontSize: '1.1rem' }}>Daña sellos de goma</span>
+                            <div style={{
+                                padding: '3.5rem 2.5rem',
+                                background: 'transparent'
+                            }}>
+                                <div style={{ marginBottom: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                                    <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.1em', color: 'rgba(255,255,255,0.3)' }}>
+                                        Productos Genéricos
+                                    </span>
                                 </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <XCircle size={24} color="#ef4444" />
-                                    <span style={{ fontSize: '1.1rem' }}>Tóxico / Contaminante</span>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                                    <XCircle size={24} color="#ef4444" />
-                                    <span style={{ fontSize: '1.1rem' }}>Acelera la oxidación</span>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                    <XCircle size={24} color="#ef4444" />
-                                    <span style={{ fontSize: '1.1rem' }}>Atrae polvo y suciedad</span>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                    {[
+                                        { text: 'Daña sellos de goma y retenes' },
+                                        { text: 'Tóxico / Altamente Contaminante' },
+                                        { text: 'Acelera la oxidación galvánica' },
+                                        { text: 'Atrae polvo y forma pasta abrasiva' }
+                                    ].map((item, idx) => (
+                                        <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', opacity: 0.5 }}>
+                                            <XCircle size={22} color="#ef4444" />
+                                            <span style={{ fontSize: '1.05rem', fontWeight: 300, color: 'white' }}>{item.text}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+                        </div>
 
+                        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic' }}>
+                                * Pruebas realizadas en laboratorios locales bajo estándares internacionales.
+                            </p>
                         </div>
                     </div>
                 </div>
