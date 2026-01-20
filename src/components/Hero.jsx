@@ -17,7 +17,7 @@ export default function Hero() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundImage: 'url("/hero-image.png")',
+                backgroundImage: 'url("hero-image.png")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 opacity: 0.6

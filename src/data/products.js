@@ -9,7 +9,7 @@ export const products = [
       { minQty: 25, price: 2.98 }
     ],
     category: 'Limpieza',
-    image: '/images/Bike Cleaner.png',
+    image: 'images/Bike Cleaner.png',
     description: 'Limpiador especializado para bicicletas, elimina suciedad y barro.'
   },
   {
@@ -22,7 +22,7 @@ export const products = [
       { minQty: 25, price: 2.98 }
     ],
     category: 'Limpieza',
-    image: '/images/BioDegreaser.png',
+    image: 'images/BioDegreaser.png',
     description: 'Desengrasante biodegradable potente para cadenas y transmisiones.'
   },
   {
@@ -35,7 +35,7 @@ export const products = [
       { minQty: 25, price: 2.89 }
     ],
     category: 'Lubricantes',
-    image: '/images/Biolube Dry.png',
+    image: 'images/Biolube Dry.png',
     description: 'Lubricante para condiciones secas, mantiene la cadena limpia.'
   },
   {
@@ -48,7 +48,7 @@ export const products = [
       { minQty: 25, price: 2.89 }
     ],
     category: 'Lubricantes',
-    image: '/images/Biolube Wet.png',
+    image: 'images/Biolube Wet.png',
     description: 'Lubricante para condiciones húmedas, resistente al agua.'
   },
   {
@@ -61,7 +61,7 @@ export const products = [
       { minQty: 25, price: 1.89 }
     ],
     category: 'Mantenimiento',
-    image: '/images/Desoxidante.png',
+    image: 'images/Desoxidante.png',
     description: 'Elimina el óxido y protege las partes metálicas.'
   },
   {
@@ -74,7 +74,7 @@ export const products = [
       { minQty: 25, price: 1.89 }
     ],
     category: 'Limpieza',
-    image: '/images/Scream Cleaner.png',
+    image: 'images/Scream Cleaner.png',
     description: 'Limpiador de alto rendimiento para todo tipo de superficies.'
   },
   {
@@ -87,7 +87,7 @@ export const products = [
       { minQty: 25, price: 2.98 }
     ],
     category: 'Acabados',
-    image: '/images/Silicon Shine.png',
+    image: 'images/Silicon Shine.png',
     description: 'Deja un acabado brillante y protege contra la suciedad.'
   },
   {
@@ -97,7 +97,7 @@ export const products = [
     priceWholesale: 9.80,
     wholesaleTiers: [], // Kept as placeholder
     category: 'Selladores',
-    image: '/images/Tubeeles Sealeant.png',
+    image: 'images/Tubeeles Sealeant.png',
     description: 'Sellador para llantas tubeless, repara pinchazos al instante.'
   },
   {
@@ -110,7 +110,7 @@ export const products = [
       { minQty: 25, price: 1.89 }
     ],
     category: 'Limpieza',
-    image: "/images/Wash O'Mango.png",
+    image: "images/Wash O'Mango.png",
     description: 'Jabón concentrado con aroma a mango para un lavado profundo.'
   },
   {
@@ -123,7 +123,7 @@ export const products = [
       { minQty: 25, price: 1.89 }
     ],
     category: 'Limpieza',
-    image: '/images/Wash Tutti.png',
+    image: 'images/Wash Tutti.png',
     description: 'Jabón concentrado con aroma a frutas para tu bicicleta.'
   },
   {
@@ -134,7 +134,7 @@ export const products = [
     priceOriginal: 8.99,
     wholesaleTiers: [],
     category: 'Ropa',
-    image: '/images/Liquide Socks.jpg',
+    image: 'images/Liquide Socks.jpg',
     description: 'Calcetines técnicos de alto rendimiento. Compresión precisa, máxima transpirabilidad y el estilo audaz de Liquide para dejar huella en cada pedalada.'
   },
   {
@@ -145,8 +145,8 @@ export const products = [
     priceOriginal: 18.99,
     wholesaleTiers: [],
     category: 'Ropa',
-    image: '/images/Liquide Cap.jpg',
-    images: ['/images/Liquide Cap.jpg', '/images/Liquide Cap Lifestyle.jpg'],
+    image: 'images/Liquide Cap.jpg',
+    images: ['images/Liquide Cap.jpg', 'images/Liquide Cap Lifestyle.jpg'],
     description: 'Gorra premium con diseño estructurado y el estilo inconfundible de Liquide. Cuenta con un parche bordado de alta calidad que resalta nuestra identidad en cada detalle. Perfecta para el post-ride o el uso diario.'
   }
 ];

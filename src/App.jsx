@@ -168,7 +168,7 @@ function App() {
                     {/* Logo - Strategic placement top-left for brand retention */}
                     <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                         <img
-                            src="/liquide-logo.png"
+                            src="liquide-logo.png"
                             alt="Liquide"
                             style={{
                                 height: '80px',
@@ -254,7 +254,7 @@ function App() {
                         justifyContent: 'center'
                     }}>
                         <img
-                            src="/brand-trio.png"
+                            src="brand-trio.png"
                             alt="Liquide Essentials"
                             style={{
                                 width: '100%',
