@@ -515,15 +515,16 @@ function App() {
                     gap: '2rem',
                     textAlign: 'center'
                 }}>
-                    {/* Logo in footer for brand reinforcement */}
+                    {/* New Vertical Logo - High impact brand element at the end */}
                     <img
-                        src="/liquide-logo.png"
-                        alt="Liquide"
+                        src="liquide-vertical-logo.png"
+                        alt="Liquide Vertical"
                         style={{
-                            height: '100px',
+                            height: '180px',
                             width: 'auto',
                             objectFit: 'contain',
-                            opacity: '0.9'
+                            marginBottom: '1rem',
+                            filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))'
                         }}
                     />
 
