@@ -16,7 +16,7 @@ const Header = ({ onOpenContact, onOpenCart, cartCount, animateCart }) => {
                         className="btn-header-contact"
                         onClick={onOpenContact}
                     >
-                        <MessageCircle size={18} />
+                        <MessageCircle size={24} strokeWidth={2} />
                         <span>Contáctanos</span>
                     </button>
 
@@ -24,7 +24,7 @@ const Header = ({ onOpenContact, onOpenCart, cartCount, animateCart }) => {
                         className={`btn-header-cart ${animateCart ? 'animate-cart' : ''}`}
                         onClick={onOpenCart}
                     >
-                        <ShoppingCart size={22} strokeWidth={1.5} />
+                        <ShoppingCart size={28} strokeWidth={2} />
                         {cartCount > 0 && (
                             <span className="cart-badge">{cartCount}</span>
                         )}

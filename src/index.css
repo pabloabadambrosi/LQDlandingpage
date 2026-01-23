@@ -118,34 +118,42 @@ h4,
 .btn-header-contact {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.25rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid var(--color-border);
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--color-glass-border);
   border-radius: 999px;
-  background: transparent;
-  color: var(--color-text-main);
+  background: var(--color-glass);
+  color: white;
   transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .btn-header-contact:hover {
-  background-color: var(--color-light-gray);
-  border-color: var(--color-text-main);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-glow);
 }
 
 .btn-header-cart {
   position: relative;
-  padding: 0.6rem;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: var(--transition-smooth);
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  color: white;
+  backdrop-filter: blur(10px);
 }
 
 .btn-header-cart:hover {
-  background-color: rgba(0, 0, 0, 0.03);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent-glow);
 }
 
 .cart-badge {

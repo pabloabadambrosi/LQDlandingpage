@@ -157,7 +157,7 @@ function App() {
 
                     {/* Search Bar */}
                     <div className="search-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '700px' }}>
-                        <Search size={22} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-muted)', pointerEvents: 'none' }} />
+                        <Search size={24} strokeWidth={2.5} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-accent)', pointerEvents: 'none' }} />
                         <input
                             type="text"
                             placeholder="Buscar productos de alto rendimiento..."

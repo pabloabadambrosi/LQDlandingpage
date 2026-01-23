@@ -48,7 +48,7 @@ const ProductCard = ({ product, onAddToCart, onClick }) => {
                         }}
                         aria-label="Añadir al carrito"
                     >
-                        <Plus size={20} />
+                        <Plus size={24} strokeWidth={2.5} />
                     </button>
                 </div>
             </div>
