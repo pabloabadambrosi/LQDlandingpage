@@ -1,0 +1,342 @@
+/* ========================================
+   RESPONSIVE DESIGN & TEXT VISIBILITY FIXES
+   ======================================== */
+
+/* Text Visibility Fixes */
+.search-wrapper input {
+    background: var(--color-glass) !important;
+    border: 1px solid var(--color-glass-border) !important;
+    color: white !important;
+    backdrop-filter: blur(10px);
+}
+
+.search-wrapper input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.search-wrapper input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+.ritual-image-wrapper {
+    flex: 1;
+    min-width: 350px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.ritual-content {
+    flex: 1.2;
+    min-width: 350px;
+}
+
+.ritual-label {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.ritual-description {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 3.5rem;
+    max-width: 550px;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.ritual-features {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.ritual-feature h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: white;
+    text-transform: none;
+}
+
+.ritual-feature p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.ritual-badge {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    background: var(--color-accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 0 30px var(--color-accent-glow);
+}
+
+.ritual-cta-wrapper {
+    margin-top: 2rem;
+}
+
+.b2b-card {
+    background: var(--color-glass) !important;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-glass-border) !important;
+}
+
+.b2b-title {
+    color: white !important;
+}
+
+.b2b-description {
+    color: var(--color-text-muted) !important;
+}
+
+/* Ensure all headings are visible */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white !important;
+}
+
+.catalog-title-wrapper p,
+.hero-description,
+.ritual-description,
+.b2b-description {
+    color: var(--color-text-muted) !important;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .ritual-container {
+        gap: 6rem;
+    }
+
+    .catalog-title {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Typography Scaling */
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem) !important;
+        line-height: 1 !important;
+    }
+
+    .hero-description {
+        font-size: 1rem !important;
+        margin-bottom: 3rem !important;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        width: 100%;
+        padding: 1.25rem 2rem !important;
+    }
+
+    /* Ritual Section */
+    .ritual-section {
+        padding: 6rem 0 !important;
+    }
+
+    .ritual-container {
+        gap: 4rem !important;
+    }
+
+    .ritual-image-wrapper {
+        min-width: 100%;
+    }
+
+    .ritual-content {
+        min-width: 100%;
+    }
+
+    .ritual-title {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+    }
+
+    .ritual-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .ritual-badge {
+        top: 10px;
+        right: 10px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Catalog Section */
+    .catalog-section {
+        padding: 6rem 0 !important;
+    }
+
+    .catalog-title {
+        font-size: 2.5rem !important;
+    }
+
+    .catalog-header {
+        gap: 2.5rem !important;
+        margin-bottom: 4rem !important;
+    }
+
+    .search-wrapper input {
+        padding: 1rem 1rem 1rem 3.5rem !important;
+        font-size: 1rem !important;
+    }
+
+    .category-btn {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Product Grid */
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+
+    .product-card {
+        padding: 1rem !important;
+    }
+
+    /* B2B Section */
+    .b2b-section {
+        padding: 6rem 0 !important;
+    }
+
+    .b2b-card {
+        padding: 3rem 2rem !important;
+    }
+
+    .b2b-title {
+        font-size: 2rem !important;
+    }
+
+    .b2b-description {
+        font-size: 1rem !important;
+    }
+
+    /* Header */
+    .header-logo img {
+        height: 50px !important;
+    }
+
+    .btn-header-contact span {
+        display: none;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 4rem 0 2rem !important;
+    }
+
+    .footer-logo {
+        height: 120px !important;
+    }
+
+    /* Cart Sidebar */
+    .cart-sidebar {
+        max-width: 100% !important;
+    }
+
+    .cart-header {
+        padding: 2rem 1.5rem !important;
+    }
+
+    .cart-items {
+        padding: 1.5rem !important;
+    }
+
+    .cart-footer {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Extra small devices */
+    .container {
+        padding: 0 1rem !important;
+    }
+
+    .hero {
+        height: 70vh !important;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .hero-description {
+        font-size: 0.95rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .hero-pretitle {
+        font-size: 0.65rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+
+    .catalog-title {
+        font-size: 2rem !important;
+    }
+
+    .ritual-title {
+        font-size: 2rem !important;
+    }
+
+    .ritual-description {
+        font-size: 1rem !important;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .b2b-title {
+        font-size: 1.75rem !important;
+    }
+
+    .category-btn {
+        padding: 0.6rem 1.25rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .price-filter-btn {
+        font-size: 0.85rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        padding: 1rem 1.5rem !important;
+        font-size: 0.9rem !important;
+    }
+}
