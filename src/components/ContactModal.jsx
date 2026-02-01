@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 
 export default function ContactModal({ isOpen, onClose, onConfirm }) {
     const [formData, setFormData] = useState({
@@ -22,141 +22,198 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
     };
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            backdropFilter: 'blur(4px)',
-            zIndex: 300,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '1rem'
-        }} onClick={onClose}>
-            <div style={{
-                backgroundColor: 'var(--color-surface)',
-                borderRadius: 'var(--radius-md)',
-                boxShadow: 'var(--shadow-lg)',
-                width: '100%',
-                maxWidth: '500px',
-                overflow: 'hidden',
-                animation: 'slideIn 0.3s ease'
-            }} onClick={e => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+            <div className="contact-modal" onClick={e => e.stopPropagation()}>
+                <button className="modal-close-btn" onClick={onClose}>
+                    <X size={20} />
+                </button>
 
-
-                <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <img
-                            src="/liquide-logo.png"
-                            alt="Liquide"
-                            style={{
-                                height: '32px',
-                                width: 'auto',
-                                objectFit: 'contain'
-                            }}
-                        />
-                        <h2 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Contáctanos</h2>
-                    </div>
-                    <button onClick={onClose} className="btn"><X size={24} /></button>
-                </div>
-
-
-                <form onSubmit={handleSubmit} style={{ padding: '2rem' }}>
-                    <div style={{ marginBottom: '1.5rem' }}>
-                        <p style={{ marginBottom: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.5' }}>
-                            Déjanos tus datos y tu mensaje. Nos pondremos en contacto contigo lo antes posible.
-                        </p>
+                <div className="contact-modal-content">
+                    <div className="contact-modal-header">
+                        <img src="/liquide-logo.png" alt="Liquide" style={{ height: '40px', marginBottom: '1.5rem' }} />
+                        <h2 className="modal-title">¿En qué podemos ayudarte?</h2>
+                        <p className="modal-subtitle">Escríbenos y un experto Liquide se pondrá en contacto contigo.</p>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 500 }}>Nombre Completo</label>
+                    <form onSubmit={handleSubmit} className="contact-form">
+                        <div className="form-group">
+                            <label>Nombre Completo</label>
                             <input
                                 required
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    borderRadius: 'var(--radius-sm)',
-                                    border: '1px solid var(--color-border)',
-                                    backgroundColor: 'var(--color-bg)'
-                                }}
-                                placeholder="Tu Nombre"
+                                placeholder="Tu nombre"
                             />
                         </div>
 
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 500 }}>Celular / WhatsApp</label>
-                            <input
-                                required
-                                type="tel"
-                                name="tel"
-                                value={formData.tel}
-                                onChange={handleChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    borderRadius: 'var(--radius-sm)',
-                                    border: '1px solid var(--color-border)',
-                                    backgroundColor: 'var(--color-bg)'
-                                }}
-                                placeholder="099-123-4567"
-                            />
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label>WhatsApp / Celular</label>
+                                <input
+                                    required
+                                    type="tel"
+                                    name="tel"
+                                    value={formData.tel}
+                                    onChange={handleChange}
+                                    placeholder="099-123-4567"
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    required
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="hola@ejemplo.com"
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 500 }}>Correo Electrónico</label>
-                            <input
-                                required
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    borderRadius: 'var(--radius-sm)',
-                                    border: '1px solid var(--color-border)',
-                                    backgroundColor: 'var(--color-bg)'
-                                }}
-                                placeholder="nombre@ejemplo.com"
-                            />
-                        </div>
-
-                        <div>
-                            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 500 }}>Mensaje</label>
+                        <div className="form-group">
+                            <label>Mensaje o Consulta</label>
                             <textarea
                                 required
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
                                 rows={4}
-                                style={{
-                                    width: '100%',
-                                    padding: '0.75rem',
-                                    borderRadius: 'var(--radius-sm)',
-                                    border: '1px solid var(--color-border)',
-                                    backgroundColor: 'var(--color-bg)',
-                                    resize: 'vertical'
-                                }}
-                                placeholder="Escribe tu mensaje aquí..."
+                                placeholder="Dinos qué necesitas saber..."
                             />
                         </div>
-                    </div>
 
-                    <div style={{ marginTop: '2rem' }}>
-                        <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '1rem' }}>
-                            Enviar Mensaje
+                        <button type="submit" className="btn-submit-contact">
+                            <Send size={18} />
+                            Enviar Consulta
                         </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+
+            <style>{`
+                .contact-modal {
+                    background: white;
+                    width: 100%;
+                    max-width: 600px;
+                    border-radius: var(--radius-lg);
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: var(--shadow-lg);
+                    animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .contact-modal-content {
+                    padding: 4rem 3.5rem;
+                }
+
+                .contact-modal-header {
+                    text-align: center;
+                    margin-bottom: 3rem;
+                }
+
+                .modal-title {
+                    font-size: 2rem;
+                    font-weight: 800;
+                    letter-spacing: -0.02em;
+                    margin-bottom: 1rem;
+                    font-family: var(--family-heading);
+                }
+
+                .modal-subtitle {
+                    color: var(--color-text-muted);
+                    font-size: 1.1rem;
+                }
+
+                .contact-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
+
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+
+                .form-row {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1.5rem;
+                }
+
+                .form-group label {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    color: var(--color-text-main);
+                }
+
+                .form-group input, 
+                .form-group textarea {
+                    padding: 1rem 1.25rem;
+                    border: 1px solid var(--color-border);
+                    border-radius: var(--radius-sm);
+                    font-family: inherit;
+                    font-size: 1rem;
+                    background: #f9fafb;
+                    transition: var(--transition-smooth);
+                }
+
+                .form-group input:focus, 
+                .form-group textarea:focus {
+                    outline: none;
+                    border-color: var(--color-accent);
+                    background: white;
+                    box-shadow: 0 0 0 4px var(--color-accent-glow);
+                }
+
+                .btn-submit-contact {
+                    margin-top: 1rem;
+                    padding: 1.25rem;
+                    background: var(--color-primary);
+                    color: white;
+                    border: none;
+                    border-radius: var(--radius-sm);
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.1em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.75rem;
+                    cursor: pointer;
+                    transition: var(--transition-smooth);
+                }
+
+                .btn-submit-contact:hover {
+                    background: #222;
+                    transform: translateY(-3px);
+                    box-shadow: var(--shadow-md);
+                }
+
+                @keyframes modalSlideIn {
+                    from { transform: translateY(30px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+
+                @media (max-width: 640px) {
+                    .contact-modal-content {
+                        padding: 3rem 1.5rem;
+                    }
+                    .form-row {
+                        grid-template-columns: 1fr;
+                    }
+                    .modal-title {
+                        font-size: 1.75rem;
+                    }
+                }
+            `}</style>
         </div>
     );
 }
