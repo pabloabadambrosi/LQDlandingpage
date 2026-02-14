@@ -249,8 +249,8 @@ h4,
 }
 
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.9;
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  line-height: 1;
   margin-bottom: 2rem;
   letter-spacing: -0.04em;
   color: white;
@@ -366,14 +366,15 @@ h4,
 .ritual-container {
   display: flex;
   align-items: center;
-  gap: 8rem;
+  gap: 4rem;
   flex-wrap: wrap;
 }
 
 .ritual-image-wrapper {
   flex: 1;
   position: relative;
-  min-width: 400px;
+  min-width: 300px;
+  width: 100%;
 }
 
 .ritual-image-wrapper img {
@@ -399,7 +400,8 @@ h4,
 
 .ritual-content {
   flex: 1;
-  min-width: 400px;
+  min-width: 300px;
+  width: 100%;
 }
 
 .ritual-label {
@@ -986,6 +988,18 @@ h4,
 }
 
 /* Responsiveness Fixes */
+@media (max-width: 900px) {
+  .hero {
+    height: auto;
+    min-height: 80vh;
+    padding: 6rem 0;
+  }
+
+  .ritual-container {
+    gap: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     text-align: center;
@@ -994,11 +1008,20 @@ h4,
 
   .hero-actions {
     flex-direction: column;
-    align-items: stretch;
+    gap: 1rem;
   }
 
-  .ritual-container {
-    gap: 4rem;
+  .hero-actions button {
+    width: 100%;
+  }
+
+  .ritual-section {
+    padding: 6rem 0;
+  }
+
+  .ritual-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
   }
 
   .btn-header-contact span {
@@ -1024,7 +1047,7 @@ h4,
   }
 
   .b2b-card {
-    padding: 4rem 2rem;
+    padding: 4rem 1.5rem;
   }
 
   .catalog-section {
@@ -1032,12 +1055,34 @@ h4,
   }
 
   .catalog-header {
-    gap: 2.5rem;
-    margin-bottom: 4rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
   .trust-content {
-    flex-direction: column;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .trust-item {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .ritual-title {
+    font-size: 2rem;
+  }
+
+  .catalog-title {
+    font-size: 2.5rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
   }
 }
