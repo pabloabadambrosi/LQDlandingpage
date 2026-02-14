@@ -764,4 +764,16 @@ h4,
   .ritual-container {
     gap: 4rem;
   }
+
+  .btn-header-contact span {
+    display: none;
+  }
+
+  .btn-header-contact {
+    padding: 0.75rem;
+  }
+
+  .cart-sidebar {
+    max-width: 100%;
+  }
 }

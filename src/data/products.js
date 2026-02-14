@@ -171,5 +171,16 @@ export const products = [
     image: 'images/Liquide Cap Pink Lightning.jpg',
     images: ['images/Liquide Cap Pink Lightning.jpg', 'images/Liquide Cap Pink Lightning Lifestyle.jpg'],
     description: 'Gorra premium color rosa vibrante con el parche Lightning de Liquide. Diseñada para quienes no temen destacar, combina frescura y el estilo técnico que nos caracteriza.'
+  },
+  {
+    id: 15,
+    name: 'Camiseta Ride or Die',
+    priceRetail: 19.99,
+    priceWholesale: 19.99,
+    priceOriginal: 24.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: 'images/camiseta-ride-or-die.jpg',
+    description: 'Camiseta premium "Ride or Die" de Liquide. Confeccionada en algodón de alta calidad, presenta un diseño audaz con nuestro icónico tigre ciclista. Estilo, comodidad y actitud para llevar la pasión por el ciclismo a todas partes.'
   }
 ];
