@@ -55,13 +55,13 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                 {/* Right: Content */}
                 <div className="modal-body">
                     <div className="modal-header">
-                        <span className="category-tag">{product.category}</span>
-                        <h2 className="modal-product-title">{product.name}</h2>
+                        <span className="category-tag" style={{ fontStyle: 'italic' }}>{product.category}</span>
+                        <h2 className="modal-product-title" style={{ fontStyle: 'italic' }}>{product.name}</h2>
 
                         <div className="modal-pricing">
-                            <span className="current-price">${price.toFixed(2)}</span>
+                            <span className="current-price" style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>${price.toFixed(2)}</span>
                             {product.priceOriginal && (
-                                <span className="old-price">${product.priceOriginal.toFixed(2)}</span>
+                                <span className="old-price" style={{ textDecoration: 'line-through' }}>${product.priceOriginal.toFixed(2)}</span>
                             )}
                         </div>
                     </div>
@@ -72,16 +72,16 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
 
                     <div className="modal-specs">
                         <div className="spec-item">
-                            <CheckCircle size={18} />
-                            <span>Alto Rendimiento Garantizado</span>
+                            <CheckCircle size={20} style={{ color: 'var(--color-accent)' }} />
+                            <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.85rem' }}>Alto Rendimiento</span>
                         </div>
                         <div className="spec-item">
-                            <Truck size={18} />
-                            <span>Envíos Rápidos a Nivel Nacional</span>
+                            <Truck size={20} style={{ color: 'var(--color-accent)' }} />
+                            <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.85rem' }}>Envíos a Ecuador</span>
                         </div>
                         <div className="spec-item">
-                            <Shield size={18} />
-                            <span>Garantía de Satisfacción Liquide</span>
+                            <Shield size={20} style={{ color: 'var(--color-accent)' }} />
+                            <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.85rem' }}>Punto de Venta Oficial</span>
                         </div>
                     </div>
 
@@ -139,7 +139,7 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
 
                 .modal-visuals {
                     flex: 1.2;
-                    background: #f9fafb;
+                    background: var(--color-ritual-bg);
                     padding: 3rem;
                     display: flex;
                     flex-direction: column;
@@ -241,13 +241,14 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
 
                 .current-price {
                     font-size: 2.5rem;
-                    font-weight: 800;
+                    font-weight: 900;
                 }
 
                 .old-price {
                     font-size: 1.25rem;
                     text-decoration: line-through;
                     color: var(--color-text-muted);
+                    font-weight: 600;
                 }
 
                 .modal-product-desc {
@@ -279,11 +280,11 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                 .btn-add-full {
                     width: 100%;
                     padding: 1.25rem;
-                    background: var(--color-primary);
-                    color: white;
+                    background: var(--color-accent);
+                    color: black;
                     border: none;
                     border-radius: var(--radius-sm);
-                    font-weight: 700;
+                    font-weight: 900;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
                     display: flex;
@@ -293,12 +294,13 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                     cursor: pointer;
                     transition: var(--transition-smooth);
                     margin-top: auto;
+                    box-shadow: 0 0 20px var(--color-accent-glow);
                 }
 
                 .btn-add-full:hover {
-                    background: #222;
                     transform: translateY(-3px);
-                    box-shadow: var(--shadow-md);
+                    filter: brightness(1.1);
+                    box-shadow: 0 0 30px var(--color-accent-glow);
                 }
 
                 @keyframes modalScaleUp {

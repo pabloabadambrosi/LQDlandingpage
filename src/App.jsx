@@ -148,21 +148,33 @@ function App() {
 
             <main id="catalog" className="catalog-section container">
                 <div className="catalog-header">
-                    <div className="catalog-title-wrapper">
-                        <h2 className="catalog-title">Catálogo Profesional</h2>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem', fontWeight: 300 }}>
-                            {activeCategory === 'Todos' ? 'Explora nuestra gama completa de soluciones de alto rendimiento.' : `Mostrando productos de la categoría ${activeCategory}.`}
+                    <div className="catalog-title-wrapper" style={{ marginBottom: '1rem' }}>
+                        <h2 className="catalog-title" style={{ fontStyle: 'italic', marginBottom: '1rem' }}>CATÁLOGO PROFESIONAL</h2>
+                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                            {activeCategory === 'Todos' ? 'ALTO RENDIMIENTO EN CADA GOTA' : `SECCIÓN: ${activeCategory}`}
                         </p>
                     </div>
 
                     {/* Search Bar */}
-                    <div className="search-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '700px' }}>
-                        <Search size={24} strokeWidth={2.5} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-accent)', pointerEvents: 'none' }} />
+                    <div className="search-wrapper" style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+                        <Search size={22} strokeWidth={3} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-accent)', pointerEvents: 'none' }} />
                         <input
                             type="text"
-                            placeholder="Buscar productos de alto rendimiento..."
+                            placeholder="BUSCA TU PRÓXIMA VENTAJA COMPETITIVA..."
                             value={searchQuery}
                             onChange={(e) => handleSearchChange(e.target.value)}
+                            style={{
+                                padding: '1.75rem 2rem 1.75rem 4.5rem',
+                                fontSize: '0.9rem',
+                                fontWeight: 800,
+                                letterSpacing: '0.05em',
+                                textTransform: 'uppercase',
+                                border: '2px solid var(--color-border)',
+                                borderRadius: 'var(--radius-sm)',
+                                background: 'white',
+                                width: '100%',
+                                transition: 'var(--transition-smooth)'
+                            }}
                         />
                     </div>
 
@@ -249,9 +261,9 @@ function App() {
             <WhatsAppButton />
 
             {showToast && (
-                <div className="toast">
-                    <Check size={18} />
-                    <span>Añadido al carrito con éxito</span>
+                <div className="toast" style={{ border: '2px solid black' }}>
+                    <Check size={18} strokeWidth={3} />
+                    <span>PRODUCTO AÑADIDO</span>
                 </div>
             )}
         </div>

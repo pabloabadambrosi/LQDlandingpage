@@ -10,31 +10,35 @@ export default function BikeCareGuide() {
                 <div style={{ textAlign: 'center', marginBottom: '8rem', maxWidth: '800px', margin: '0 auto' }}>
                     <span style={{
                         color: 'var(--color-accent)',
-                        fontWeight: 800,
-                        letterSpacing: '0.2em',
+                        fontWeight: 900,
+                        letterSpacing: '0.25em',
                         textTransform: 'uppercase',
-                        fontSize: '0.8rem',
+                        fontSize: '0.9rem',
                         display: 'block',
-                        marginBottom: '1.5rem'
+                        marginBottom: '1.5rem',
+                        fontStyle: 'italic'
                     }}>
-                        Academia de Mantenimiento
+                        Ingeniería en Mantenimiento
                     </span>
                     <h2 style={{
-                        fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                        fontWeight: 800,
-                        letterSpacing: '-0.04em',
+                        fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                        fontWeight: 900,
+                        letterSpacing: '0.02em',
                         marginBottom: '2rem',
-                        lineHeight: 1,
-                        fontFamily: 'var(--font-family-heading)'
+                        lineHeight: 1.1,
+                        fontFamily: 'var(--font-family-heading)',
+                        textTransform: 'uppercase',
+                        fontStyle: 'italic'
                     }}>
-                        Tu bicicleta merece <span style={{ color: 'var(--color-accent)' }}>ciencia, no suerte.</span>
+                        TU BICICLETA MERECE <span style={{ color: 'var(--color-accent)' }}>CIENCIA, NO SUERTE.</span>
                     </h2>
                     <p style={{
                         fontSize: '1.25rem',
-                        color: 'var(--color-text-muted)',
-                        fontWeight: 400,
+                        color: 'var(--color-text-main)',
+                        fontWeight: 500,
                         maxWidth: '650px',
-                        margin: '0 auto'
+                        margin: '0 auto',
+                        lineHeight: 1.6
                     }}>
                         Descubre por qué los expertos eligen Liquide y cómo aplicar nuestros productos para duplicar la vida útil de tus componentes.
                     </p>
@@ -44,148 +48,121 @@ export default function BikeCareGuide() {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                    gap: '3rem',
+                    gap: '2rem',
                     marginBottom: '10rem'
                 }}>
                     {/* Step 1 */}
-                    <div style={{
-                        padding: '3.5rem 2.5rem',
-                        borderRadius: 'var(--radius-md)',
-                        backgroundColor: 'var(--color-surface)',
-                        border: '1px solid var(--color-border)',
+                    <div className="ritual-feature" style={{
+                        padding: '4rem 3rem',
+                        backgroundColor: 'var(--color-dark-section)',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(255, 49, 220, 0.1)',
                         transition: 'var(--transition-smooth)',
-                        boxShadow: 'var(--shadow-md)'
-                    }}
-                        onMouseOver={e => {
-                            e.currentTarget.style.transform = 'translateY(-10px)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                        }}
-                        onMouseOut={e => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                        }}
-                    >
+                        color: 'white'
+                    }}>
                         <div style={{
-                            width: '70px',
-                            height: '70px',
-                            backgroundColor: 'var(--color-bg)',
-                            borderRadius: '50%',
+                            width: '80px',
+                            height: '80px',
+                            backgroundColor: 'black',
+                            borderRadius: '4px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginBottom: '2rem',
+                            marginBottom: '2.5rem',
                             color: 'var(--color-accent)',
-                            border: '1px solid var(--color-border)'
+                            border: '1px solid var(--color-accent)'
                         }}>
-                            <Droplets size={32} strokeWidth={1.5} />
+                            <Droplets size={36} strokeWidth={2} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.25rem', fontFamily: 'var(--font-family-heading)' }}>1. Limpieza Profunda</h3>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                        <h3 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '1.5rem', fontFamily: 'var(--font-family-heading)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>1. Limpieza Profunda</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
                             Aplica <strong>Bike Cleaner</strong> en toda la bici. Su nanotecnología penetra la suciedad microscópica.
                         </p>
-                        <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
-                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.95rem', color: 'var(--color-text-main)' }}>
-                                <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Espera 2 minutos
+                        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '1rem' }}>
+                                <li style={{ marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> ESPERA 2 MINUTOS
                                 </li>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Enjuaga con agua
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> ENJUAGA CON AGUA
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     {/* Step 2 */}
-                    <div style={{
-                        padding: '3.5rem 2.5rem',
-                        borderRadius: 'var(--radius-md)',
-                        backgroundColor: 'var(--color-surface)',
-                        border: '1px solid var(--color-border)',
+                    <div className="ritual-feature" style={{
+                        padding: '4rem 3rem',
+                        backgroundColor: 'var(--color-dark-section)',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(255, 49, 220, 0.1)',
                         transition: 'var(--transition-smooth)',
-                        boxShadow: 'var(--shadow-md)'
-                    }}
-                        onMouseOver={e => {
-                            e.currentTarget.style.transform = 'translateY(-10px)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                        }}
-                        onMouseOut={e => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                        }}
-                    >
+                        color: 'white'
+                    }}>
                         <div style={{
-                            width: '70px',
-                            height: '70px',
-                            backgroundColor: 'var(--color-bg)',
-                            borderRadius: '50%',
+                            width: '80px',
+                            height: '80px',
+                            backgroundColor: 'black',
+                            borderRadius: '4px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginBottom: '2rem',
+                            marginBottom: '2.5rem',
                             color: 'var(--color-accent)',
-                            border: '1px solid var(--color-border)'
+                            border: '1px solid var(--color-accent)'
                         }}>
-                            <Sparkles size={32} strokeWidth={1.5} />
+                            <Sparkles size={36} strokeWidth={2} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.25rem', fontFamily: 'var(--font-family-heading)' }}>2. Desengrase Total</h3>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                        <h3 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '1.5rem', fontFamily: 'var(--font-family-heading)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>2. Desengrase Total</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
                             Usa <strong>Bio Degreaser</strong> en la transmisión. Elimina grasa vieja y contaminantes.
                         </p>
-                        <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
-                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.95rem', color: 'var(--color-text-main)' }}>
-                                <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Usa cepillo de cerdas
+                        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '1rem' }}>
+                                <li style={{ marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> USA CEPILLO DE CERDAS
                                 </li>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Seca completamente
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> SECA COMPLETAMENTE
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     {/* Step 3 */}
-                    <div style={{
-                        padding: '3.5rem 2.5rem',
-                        borderRadius: 'var(--radius-md)',
-                        backgroundColor: 'var(--color-surface)',
-                        border: '1px solid var(--color-border)',
+                    <div className="ritual-feature" style={{
+                        padding: '4rem 3rem',
+                        backgroundColor: 'var(--color-dark-section)',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(255, 49, 220, 0.1)',
                         transition: 'var(--transition-smooth)',
-                        boxShadow: 'var(--shadow-md)'
-                    }}
-                        onMouseOver={e => {
-                            e.currentTarget.style.transform = 'translateY(-10px)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                        }}
-                        onMouseOut={e => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                        }}
-                    >
+                        color: 'white'
+                    }}>
                         <div style={{
-                            width: '70px',
-                            height: '70px',
-                            backgroundColor: 'var(--color-bg)',
-                            borderRadius: '50%',
+                            width: '80px',
+                            height: '80px',
+                            backgroundColor: 'black',
+                            borderRadius: '4px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginBottom: '2rem',
+                            marginBottom: '2.5rem',
                             color: 'var(--color-accent)',
-                            border: '1px solid var(--color-border)'
+                            border: '1px solid var(--color-accent)'
                         }}>
-                            <Wrench size={32} strokeWidth={1.5} />
+                            <Wrench size={36} strokeWidth={2} />
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.25rem', fontFamily: 'var(--font-family-heading)' }}>3. Lubricación</h3>
-                        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                        <h3 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '1.5rem', fontFamily: 'var(--font-family-heading)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>3. Lubricación</h3>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
                             Aplica <strong>Biolube</strong> en cada eslabón. Reduce la fricción y aumenta la velocidad.
                         </p>
-                        <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
-                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.95rem', color: 'var(--color-text-main)' }}>
-                                <li style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Aplica en el interior
+                        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+                            <ul style={{ listStyle: 'none', padding: 0, fontSize: '1rem' }}>
+                                <li style={{ marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> APLICA EN EL INTERIOR
                                 </li>
-                                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                    <CheckCircle size={18} color="var(--color-accent)" /> Retira el exceso
+                                <li style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontWeight: 700 }}>
+                                    <CheckCircle size={20} color="var(--color-accent)" /> RETIRA EL EXCESO
                                 </li>
                             </ul>
                         </div>
@@ -205,15 +182,17 @@ export default function BikeCareGuide() {
                         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                             <h3 style={{
                                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-                                fontWeight: 800,
+                                fontWeight: 900,
                                 marginBottom: '1.5rem',
                                 color: 'white',
-                                fontFamily: 'var(--font-family-heading)'
+                                fontFamily: 'var(--font-family-heading)',
+                                textTransform: 'uppercase',
+                                fontStyle: 'italic'
                             }}>
-                                Liquide vs. <span style={{ opacity: 0.3, color: 'white' }}>Lo Común</span>
+                                LIQUIDE VS. <span style={{ opacity: 0.3, color: 'white' }}>LO COMÚN</span>
                             </h3>
-                            <p style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 400, fontSize: '1.15rem' }}>
-                                Por qué los ciclistas profesionales no usan productos genéricos.
+                            <p style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 800, fontSize: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                                EL RENDIMIENTO NO ES NEGOCIABLE.
                             </p>
                         </div>
 

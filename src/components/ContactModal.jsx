@@ -96,10 +96,10 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
 
             <style>{`
                 .contact-modal {
-                    background: white;
+                    background: #ffffff;
                     width: 100%;
                     max-width: 600px;
-                    border-radius: var(--radius-lg);
+                    border-radius: var(--radius-sm);
                     position: relative;
                     overflow: hidden;
                     box-shadow: var(--shadow-lg);
@@ -117,15 +117,17 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
 
                 .modal-title {
                     font-size: 2rem;
-                    font-weight: 800;
-                    letter-spacing: -0.02em;
+                    font-weight: 900;
+                    letter-spacing: 0.05em;
                     margin-bottom: 1rem;
-                    font-family: var(--family-heading);
+                    font-family: var(--font-family-heading);
+                    text-transform: uppercase;
                 }
 
                 .modal-subtitle {
                     color: var(--color-text-muted);
                     font-size: 1.1rem;
+                    font-weight: 500;
                 }
 
                 .contact-form {
@@ -147,19 +149,19 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
                 }
 
                 .form-group label {
-                    font-size: 0.85rem;
-                    font-weight: 700;
+                    font-size: 0.75rem;
+                    font-weight: 900;
                     text-transform: uppercase;
-                    letter-spacing: 0.05em;
-                    color: var(--color-text-main);
+                    letter-spacing: 0.1em;
+                    color: var(--color-primary);
                 }
 
                 .form-group input, 
                 .form-group textarea {
                     padding: 1rem 1.25rem;
-                    border: 1px solid var(--color-border);
+                    border: 2px solid var(--color-border);
                     border-radius: var(--radius-sm);
-                    font-family: inherit;
+                    font-family: var(--font-family-base);
                     font-size: 1rem;
                     background: #f9fafb;
                     transition: var(--transition-smooth);
@@ -176,13 +178,13 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
                 .btn-submit-contact {
                     margin-top: 1rem;
                     padding: 1.25rem;
-                    background: var(--color-primary);
-                    color: white;
+                    background: var(--color-accent);
+                    color: black;
                     border: none;
                     border-radius: var(--radius-sm);
-                    font-weight: 800;
+                    font-weight: 900;
                     text-transform: uppercase;
-                    letter-spacing: 0.1em;
+                    letter-spacing: 0.15em;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -192,9 +194,26 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
                 }
 
                 .btn-submit-contact:hover {
-                    background: #222;
                     transform: translateY(-3px);
-                    box-shadow: var(--shadow-md);
+                    box-shadow: 0 0 30px var(--color-accent-glow);
+                    filter: brightness(1.1);
+                }
+
+                .modal-close-btn {
+                    position: absolute;
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    color: var(--color-text-muted);
+                    transition: var(--transition-smooth);
+                    z-index: 10;
+                }
+
+                .modal-close-btn:hover {
+                    color: var(--color-accent);
+                    transform: rotate(90deg);
                 }
 
                 @keyframes modalSlideIn {

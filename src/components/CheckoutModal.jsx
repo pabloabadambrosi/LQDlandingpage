@@ -126,10 +126,10 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
 
             <style>{`
                 .checkout-modal {
-                    background: white;
+                    background: #ffffff;
                     width: 100%;
                     max-width: 900px;
-                    border-radius: var(--radius-lg);
+                    border-radius: var(--radius-sm);
                     position: relative;
                     overflow: hidden;
                     box-shadow: var(--shadow-lg);
@@ -152,7 +152,7 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
 
                 .checkout-badge {
                     font-size: 0.75rem;
-                    font-weight: 800;
+                    font-weight: 900;
                     text-transform: uppercase;
                     letter-spacing: 0.15em;
                     color: var(--color-accent);
@@ -161,9 +161,9 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
 
                 .checkout-total {
                     font-size: 4rem;
-                    font-weight: 800;
+                    font-weight: 900;
                     margin-bottom: 2rem;
-                    font-family: var(--family-heading);
+                    font-family: var(--font-family-heading);
                 }
 
                 .checkout-stats {
@@ -178,12 +178,14 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
                     align-items: center;
                     gap: 1rem;
                     font-size: 1.1rem;
-                    font-weight: 500;
+                    font-weight: 700;
                     opacity: 0.9;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
 
                 .checkout-note {
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
                     opacity: 0.6;
                     line-height: 1.6;
                     border-top: 1px solid rgba(255,255,255,0.1);
@@ -197,10 +199,10 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
 
                 .form-section-title {
                     font-size: 1.5rem;
-                    font-weight: 800;
+                    font-weight: 900;
                     margin-bottom: 2rem;
                     text-transform: uppercase;
-                    letter-spacing: -0.02em;
+                    letter-spacing: 0.05em;
                 }
 
                 .checkout-form {
@@ -222,20 +224,21 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
                 }
 
                 .form-group label {
-                    font-size: 0.8rem;
-                    font-weight: 700;
+                    font-size: 0.75rem;
+                    font-weight: 900;
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
-                    color: var(--color-text-muted);
+                    color: var(--color-primary);
                 }
 
                 .form-group input {
                     padding: 0.85rem 1rem;
-                    border: 1px solid var(--color-border);
+                    border: 2px solid var(--color-border);
                     border-radius: var(--radius-sm);
                     font-size: 1rem;
                     background: #f9fafb;
                     transition: var(--transition-smooth);
+                    font-family: var(--font-family-base);
                 }
 
                 .form-group input:focus {
@@ -249,10 +252,10 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
                     margin-top: 1rem;
                     padding: 1.25rem;
                     background: var(--color-accent);
-                    color: white;
+                    color: black;
                     border: none;
                     border-radius: var(--radius-sm);
-                    font-weight: 800;
+                    font-weight: 900;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
                     cursor: pointer;
@@ -261,8 +264,25 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
 
                 .btn-confirm-order:hover {
                     transform: translateY(-3px);
-                    box-shadow: 0 10px 20px rgba(255, 0, 85, 0.2);
+                    box-shadow: 0 0 30px var(--color-accent-glow);
                     filter: brightness(1.1);
+                }
+
+                .modal-close-btn {
+                    position: absolute;
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                    color: var(--color-text-muted);
+                    transition: var(--transition-smooth);
+                    z-index: 10;
+                }
+
+                .modal-close-btn:hover {
+                    color: var(--color-accent);
+                    transform: rotate(90deg);
                 }
 
                 @media (max-width: 800px) {

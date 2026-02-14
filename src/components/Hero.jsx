@@ -13,15 +13,14 @@ const Hero = () => {
 
             <div className="container">
                 <div className="hero-content">
-                    <span className="hero-pretitle">Ingeniería que Protege</span>
-                    <h1 className="hero-title">
-                        MANTENIMIENTO <br />
-                        <span style={{ color: 'var(--color-accent)' }}>CIENTÍFICO</span> <br />
-                        PARA TU BICI.
+                    <span className="hero-pretitle" style={{ fontStyle: 'italic', background: 'var(--color-accent)', color: 'black' }}>Performance Ecuatoriano</span>
+                    <h1 className="hero-title" style={{ fontStyle: 'italic', textShadow: '3px 3px 0px rgba(0,0,0,0.5)' }}>
+                        EL RITUAL DEL <br />
+                        <span style={{ color: 'var(--color-accent)' }}>ALTO RENDIMIENTO</span>
                     </h1>
-                    <p className="hero-description">
-                        Línea premium de cuidado desarrollada para ciclistas que exigen el máximo rendimiento.
-                        Tecnología biodegradable fabricada bajo estándares internacionales en Ecuador.
+                    <p className="hero-description" style={{ fontSize: '1.2rem', maxWidth: '550px' }}>
+                        Diseñamos fórmulas profesionales para ciclistas que no aceptan compromisos.
+                        Limpieza radical y lubricación de grado competición, nacida en Ecuador.
                     </p>
 
                     <div className="hero-actions">
@@ -29,13 +28,13 @@ const Hero = () => {
                             className="btn-hero-primary"
                             onClick={() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            Ver Catálogo
+                            Catálogo
                         </button>
                         <button
                             className="btn-hero-secondary"
-                            onClick={() => window.open('https://www.instagram.com/liquide_ec/', '_blank')}
+                            onClick={() => document.getElementById('ritual')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            Comunidad Liquide
+                            El Ritual
                         </button>
                     </div>
                 </div>
@@ -44,20 +43,21 @@ const Hero = () => {
             {/* Scroll Indicator */}
             <div style={{
                 position: 'absolute',
-                bottom: '2rem',
+                bottom: '2.5rem',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 zIndex: 10,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1rem',
-                opacity: 0.6
+                gap: '0.75rem',
+                opacity: 0.8
             }}>
+                <span style={{ color: 'white', fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', fontStyle: 'italic' }}>Scroll</span>
                 <div style={{
-                    width: '1px',
-                    height: '60px',
-                    background: 'linear-gradient(to bottom, var(--color-primary), transparent)',
+                    width: '2px',
+                    height: '50px',
+                    background: 'linear-gradient(to bottom, var(--color-accent), transparent)',
                     animation: 'scrollLine 2s infinite ease-in-out'
                 }} />
             </div>
