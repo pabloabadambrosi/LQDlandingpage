@@ -22,7 +22,7 @@ export default function ContactModal({ isOpen, onClose, onConfirm }) {
     };
 
     return (
-        <div className="modal-overlay" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}>
             <div className="contact-modal" onClick={e => e.stopPropagation()}>
                 <button className="modal-close-btn" onClick={onClose}>
                     <X size={20} />

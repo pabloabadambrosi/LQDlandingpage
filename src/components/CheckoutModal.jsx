@@ -23,7 +23,7 @@ export default function CheckoutModal({ isOpen, onClose, onConfirm, total, cartC
     };
 
     return (
-        <div className="modal-overlay" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}>
             <div className="checkout-modal" onClick={e => e.stopPropagation()}>
                 <button className="modal-close-btn" onClick={onClose}>
                     <X size={20} />

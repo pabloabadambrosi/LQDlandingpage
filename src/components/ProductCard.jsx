@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, Eye } from 'lucide-react';
 
 const ProductCard = ({ product, onAddToCart, onClick }) => {
+    const [isHovered, setIsHovered] = useState(false);
     const price = product.priceRetail;
 
+    const hasHoverImage = product.images && product.images.length > 1;
+    const currentImage = (isHovered && hasHoverImage) ? product.images[1] : product.image;
+
     return (
-        <div className="product-card" onClick={onClick}>
+        <div
+            className="product-card"
+            onClick={onClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <div className="product-image-container">
                 <img
-                    src={product.image}
+                    src={currentImage}
                     alt={product.name}
                     loading="lazy"
+                    className={isHovered && hasHoverImage ? 'hover-zoom' : ''}
                 />
 
                 {product.priceOriginal && (
@@ -78,13 +88,6 @@ const ProductCard = ({ product, onAddToCart, onClick }) => {
                     </button>
                 </div>
             </div>
-
-            <style jsx>{`
-                .product-card:hover .product-quick-view {
-                    transform: translateX(-50%) translateY(0);
-                    opacity: 1;
-                }
-            `}</style>
         </div>
     );
 }

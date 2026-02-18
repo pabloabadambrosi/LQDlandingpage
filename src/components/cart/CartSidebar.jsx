@@ -10,10 +10,11 @@ const CartSidebar = ({
     count,
     onCheckout
 }) => {
-    if (!isOpen) return null;
-
     return (
-        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose} style={{ opacity: isOpen ? 1 : 0, visibility: isOpen ? 'visible' : 'hidden', transition: 'var(--transition-smooth)' }}>
+        <div
+            className={`modal-overlay ${isOpen ? 'active' : ''}`}
+            onClick={onClose}
+        >
             <div className={`cart-sidebar ${isOpen ? 'open' : ''}`} onClick={e => e.stopPropagation()}>
                 <div className="cart-header">
                     <h2 className="cart-title">Tu Carrito ({count})</h2>

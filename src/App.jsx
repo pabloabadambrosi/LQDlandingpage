@@ -42,6 +42,7 @@ function App() {
 
         setShowToast(true)
         setAnimateCart(true)
+        setIsCartOpen(true) // Abrir el carrito automáticamente
         setTimeout(() => setShowToast(false), 2000)
         setTimeout(() => setAnimateCart(false), 500)
     }

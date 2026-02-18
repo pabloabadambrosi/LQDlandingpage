@@ -180,7 +180,28 @@ export const products = [
     priceOriginal: 24.99,
     wholesaleTiers: [],
     category: 'Ropa',
-    image: 'images/camiseta-ride-or-die.jpg',
+    image: 'images/ride or die tigre.jpg',
     description: 'Camiseta premium "Ride or Die" de Liquide. Confeccionada en algodón de alta calidad, presenta un diseño audaz con nuestro icónico tigre ciclista. Estilo, comodidad y actitud para llevar la pasión por el ciclismo a todas partes.'
+  },
+  {
+    id: 16,
+    name: 'Camiseta Skull Pink',
+    priceRetail: 18.99,
+    priceWholesale: 18.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: 'images/Calavera Rosada.jpg',
+    images: ['images/Calavera Rosada.jpg'],
+    description: 'Camiseta premium con el icónico diseño de calavera rosada de Liquide. Confeccionada en algodón de alta calidad con un ajuste moderno. El diseño principal se encuentra en la espalda, complementado con un sutil logo en el pecho. Estilo audaz para destacar dentro y fuera del camino.'
+  },
+  {
+    id: 17,
+    name: 'Camiseta Rata Verde',
+    priceRetail: 19.99,
+    priceWholesale: 19.99,
+    wholesaleTiers: [],
+    category: 'Ropa',
+    image: 'images/Rata Verde.jpg',
+    description: 'Camiseta premium de Liquide con el diseño exclusivo Rata Verde. Confeccionada con materiales de alta calidad para ofrecer máxima comodidad y un estilo urbano único.'
   }
 ];

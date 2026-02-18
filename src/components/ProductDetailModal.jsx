@@ -17,7 +17,7 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
     const prevImg = () => setCurrentImgIndex((prev) => (prev - 1 + images.length) % images.length);
 
     return (
-        <div className="modal-overlay" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}>
             <div className="product-detail-modal" onClick={e => e.stopPropagation()}>
                 {/* Close Button */}
                 <button className="modal-close-btn" onClick={onClose}>
